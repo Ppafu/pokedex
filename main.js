@@ -1,24 +1,25 @@
-import './style.css'
-import javascriptLogo from './javascript.svg'
-import viteLogo from '/vite.svg'
-import { setupCounter } from './counter.js'
+"use strict";
 
-document.querySelector('#app').innerHTML = `
-  <div>
-    <a href="https://vitejs.dev" target="_blank">
-      <img src="${viteLogo}" class="logo" alt="Vite logo" />
-    </a>
-    <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript" target="_blank">
-      <img src="${javascriptLogo}" class="logo vanilla" alt="JavaScript logo" />
-    </a>
-    <h1>Hello Vite!</h1>
-    <div class="card">
-      <button id="counter" type="button"></button>
-    </div>
-    <p class="read-the-docs">
-      Click on the Vite logo to learn more
-    </p>
-  </div>
-`
+// import { AJAX } from "./helpers";
+import { API_URL, NUMBER_OF_POKEMON } from "./config";
 
-setupCounter(document.querySelector('#counter'))
+const pokemon = "pikachu";
+const arrayPokemon = Array.from({ length: NUMBER_OF_POKEMON }, (_, i) => i + 1);
+console.log(arrayPokemon);
+
+const loadPokemon = async function () {
+  try {
+    const responses = await Promise.all(
+      arrayPokemon.map(async (id) => {
+        const response = await fetch(`${API_URL}${id}`);
+        const pokemonData = await response.json();
+        console.log(pokemonData.id, pokemonData.name);
+      })
+    );
+  } catch (err) {
+    console.error(`${err}💥`);
+    throw err;
+  }
+};
+
+loadPokemon();
