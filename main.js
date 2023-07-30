@@ -16,8 +16,14 @@ class Pokemon {
   _generateMarkup() {
     const nameToUpperCase = this.name[0].toUpperCase() + this.name.slice(1);
 
-    let markup = `<li class="pokemon-preview"><div class="id"><p>#${this.id}</p></div>
-    <div class="img-container"><img class="img-pokemon" src="https://img.pokemondb.net/artwork/large/${this.name}.jpg" alt="${this.name}"></div>
+    let markup = `<li class="pokemon-preview"><div class="id"><p>#${
+      this.id
+    }</p></div>
+    <div class="img-container"><img class="img-pokemon" src="https://img.pokemondb.net/artwork/large/${
+      this.name
+    }.jpg" ${this.id > 16 ? "loading = lazy" : "loading = eager"} alt="${
+      this.name
+    }"></div>
     <div class="name">${nameToUpperCase}</div><div class="type-container">`;
 
     const length = this.types.length;
@@ -73,14 +79,41 @@ const createPokemon = function (data) {
 
 const loadPokemon = async function () {
   try {
-    for (const id of arrayPokemon) {
-      const response = await fetch(`${API_URL}${id}`);
-      const pokemonData = await response.json();
+    let page = 1; // Initialize the page number to load
+    const itemsPerPage = 16; // Set the number of Pokémon to load per page
+    let isLoading = false; // Flag to prevent concurrent loading
 
-      const pokemon = createPokemon(pokemonData);
-      pokemon.render();
-      console.log(pokemonData);
-    }
+    const loadPokemonPage = async (pageNumber) => {
+      const startIndex = (pageNumber - 1) * itemsPerPage;
+      const endIndex = startIndex + itemsPerPage;
+      const pokemonIds = arrayPokemon.slice(startIndex, endIndex);
+
+      for (const id of pokemonIds) {
+        const response = await fetch(`${API_URL}${id}`);
+        const pokemonData = await response.json();
+
+        const pokemon = createPokemon(pokemonData);
+        pokemon.render();
+      }
+      isLoading = false;
+    };
+    await loadPokemonPage(page);
+
+    window.addEventListener("scroll", async () => {
+      const { scrollTop, scrollHeight, clientHeight } =
+        document.documentElement;
+      const scrollThreshold = 250; //???
+
+      // Check if the user has reached the bottom of the page
+      if (
+        !isLoading &&
+        scrollTop + clientHeight >= scrollHeight - scrollThreshold
+      ) {
+        isLoading = true;
+        page++;
+        await loadPokemonPage(page);
+      }
+    });
   } catch (err) {
     console.error(`${err}💥`);
     throw err;
