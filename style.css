@@ -179,7 +179,7 @@ body {
   flex-direction: column;
   align-items: center;
 
-  border-radius: var(--radius-2);
+  border-radius: var(--radius-3);
   background-color: #fff;
   width: 14rem;
   height: 19rem;
@@ -204,7 +204,7 @@ body {
   /* padding: var(--size-1); */
 }
 .id p {
-  margin: 0 0.3rem;
+  margin: 0.25rem 0 0 0.5rem;
 }
 
 .img-container {

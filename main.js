@@ -2,6 +2,7 @@
 
 // import { AJAX } from "./helpers";
 import { API_URL, NUMBER_OF_POKEMON } from "./config";
+import { infiniteScroll } from "./infiniteScroll";
 
 class Pokemon {
   parentElement = document.querySelector(".pokemon-container");
@@ -52,9 +53,7 @@ class Pokemon {
   }
 }
 
-// const pokemon = "pikachu";
 const arrayPokemon = Array.from({ length: NUMBER_OF_POKEMON }, (_, i) => i + 1);
-// console.log(arrayPokemon);
 
 function toObject(keys, values) {
   const obj = Object.fromEntries(
@@ -77,47 +76,42 @@ const createPokemon = function (data) {
   return new Pokemon(id, name, types);
 };
 
-const loadPokemon = async function () {
+/////////////////////
+const fetchPokemon = async function (startIndex, endIndex) {
   try {
-    let page = 1; // Initialize the page number to load
-    const itemsPerPage = 16; // Set the number of Pokémon to load per page
-    let isLoading = false; // Flag to prevent concurrent loading
+    const pokemonIds = arrayPokemon.slice(startIndex, endIndex);
 
-    const loadPokemonPage = async (pageNumber) => {
-      const startIndex = (pageNumber - 1) * itemsPerPage;
-      const endIndex = startIndex + itemsPerPage;
-      const pokemonIds = arrayPokemon.slice(startIndex, endIndex);
+    for (const id of pokemonIds) {
+      const response = await fetch(`${API_URL}${id}`);
+      const pokemonData = await response.json();
 
-      for (const id of pokemonIds) {
-        const response = await fetch(`${API_URL}${id}`);
-        const pokemonData = await response.json();
-
-        const pokemon = createPokemon(pokemonData);
-        pokemon.render();
-      }
-      isLoading = false;
-    };
-    await loadPokemonPage(page);
-
-    window.addEventListener("scroll", async () => {
-      const { scrollTop, scrollHeight, clientHeight } =
-        document.documentElement;
-      const scrollThreshold = 250; //???
-
-      // Check if the user has reached the bottom of the page
-      if (
-        !isLoading &&
-        scrollTop + clientHeight >= scrollHeight - scrollThreshold
-      ) {
-        isLoading = true;
-        page++;
-        await loadPokemonPage(page);
-      }
-    });
+      const pokemon = createPokemon(pokemonData);
+      pokemon.render();
+    }
   } catch (err) {
     console.error(`${err}💥`);
     throw err;
   }
 };
 
+const loadPokemon = async function () {
+  try {
+    let page = 1;
+    const itemsPerPage = 16;
+
+    const loadPokemonPage = async () => {
+      const startIndex = (page - 1) * itemsPerPage;
+      const endIndex = startIndex + itemsPerPage;
+
+      await fetchPokemon(startIndex, endIndex);
+      page++;
+    };
+
+    await loadPokemonPage();
+    infiniteScroll(loadPokemonPage);
+  } catch (err) {
+    console.error(`${err}💥`);
+    throw err;
+  }
+};
 loadPokemon();
