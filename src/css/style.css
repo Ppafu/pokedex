@@ -1,4 +1,4 @@
-@import "./node_modules/open-props/open-props.min.css";
+@import "../../node_modules/open-props/open-props.min.css";
 
 /*
   1. Use a more-intuitive box-sizing model.
@@ -132,27 +132,37 @@ h6 {
 }
 
 /* *************************** */
+html,
+body {
+  scrollbar-gutter: stable;
+  width: 100vw;
+}
 
 html {
   min-height: 100%;
-  width: 100%;
 }
 
 body {
-  width: 100vw;
-  overflow-x: hidden;
-
+  /* height: 100%; */
   font-size: var(--font-size-1);
   font-family: "Roboto Mono", var(--font-mono);
   font-weight: 400;
   letter-spacing: var(--font-letterspacing-0);
   color: var(--gray-8);
   background-color: #fff;
+  overflow-x: hidden;
+}
+.scroll-lock {
+  overflow: hidden;
 }
 
+li {
+  list-style: none;
+}
 .container {
-  flex-direction: column;
   display: flex;
+  /* width: 100vw; */
+  flex-direction: column;
   align-items: center;
   justify-content: center;
   background-color: var(--gray-1);
@@ -164,13 +174,14 @@ body {
 }
 
 .pokemon-container {
+  display: grid;
+  grid-template-columns: auto auto auto auto;
   margin: auto;
-  display: flex;
   justify-content: center;
   width: min(100% - 3rem, 60rem);
 
   gap: var(--size-3);
-  flex-wrap: wrap;
+
   /* background-color: var(--gray-6); */
 }
 
@@ -239,4 +250,111 @@ body {
   height: 1.5rem;
   /* padding: 0.3rem; */
   border-radius: var(--radius-5);
+}
+
+/* MODAL */
+
+.pokemon-modal {
+  margin: auto;
+  display: grid;
+  /* position: fixed;
+  left: 49.65%;
+  top: 50%;
+  transform: translate(-50%, -50%); */
+
+  width: min(100% - 2rem, 60rem);
+  height: min(100% - 2rem, 33rem);
+
+  border-radius: var(--radius-3);
+
+  border: none;
+
+  /* transition: transform 0.3s ease-in-out; */
+  background-color: var(--gray-1);
+  padding: 0;
+  /* overflow: hidden; */
+
+  box-shadow: var(--shadow-4);
+}
+
+.pokemon-modal:not([open]) {
+  pointer-events: none;
+  opacity: 0;
+}
+
+.pokemon-modal::backdrop {
+  -webkit-backdrop-filter: blur(1px);
+  backdrop-filter: blur(1px);
+  background-color: rgba(0, 0, 0, 0.1);
+}
+
+.dialog-wrapper {
+  display: grid;
+  grid-template-rows: auto 1fr;
+  /* padding: 0.5rem; */
+  width: 100%;
+  /* height: 100%; */
+}
+
+dialog > form > header {
+  /* grid-column-start: span 2; */
+  display: flex;
+  gap: var(--size-3);
+  justify-content: space-between;
+  align-items: flex-start;
+}
+
+.info-modal {
+  margin: var(--size-3);
+  display: flex;
+}
+
+dialog > form > article {
+  display: flex;
+  justify-content: space-around;
+  flex-wrap: wrap;
+}
+
+.img-container-modal {
+  display: flex;
+  height: 25rem;
+  width: 25rem;
+  padding: 1rem;
+  justify-content: center;
+  align-items: center;
+  background-color: #fff;
+  border-radius: var(--radius-3);
+}
+.img-pokemon-modal {
+  height: 100%;
+  object-fit: contain;
+}
+
+.btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: none;
+  border: none;
+  outline: none;
+  /* background-color: #b97fc9; */
+}
+
+.btn--delete {
+  width: var(--size-7);
+  height: var(--size-7);
+
+  border-radius: var(--radius-6);
+  cursor: pointer;
+  font-size: var(--font-size-5);
+  transition: outline-color 0.3s;
+}
+
+.stats-modal {
+}
+
+.chart-modal {
+  width: 23rem;
+  height: 23rem;
+  /* background-color: #b97fc9; */
 }

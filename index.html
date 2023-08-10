@@ -7,23 +7,32 @@
       content="height=device-height, initial-scale=1, user-scalable=no, viewport-fit=cover" />
     <!-- <link rel="shortcut icon" href="favicon.png" type="image/x-icon" /> -->
 
-    <script type="module" src="main.js" defer></script>
+    <script type="module" src="src/js/main.js" defer></script>
+    <!-- <script type="module" src="test.js" defer></script> -->
+
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
       href="https://fonts.googleapis.com/css2?family=Roboto+Mono:wght@300;400;500;600;700&family=Rubik:wght@400;500;600;700;800&display=swap"
       rel="stylesheet" />
-    <link rel="stylesheet" href="style.css" />
+    <link rel="stylesheet" href="/src/css/style.css" />
     <!-- <link rel="stylesheet" href="queries.css" /> -->
     <title>Pokédex</title>
   </head>
   <body>
     <div class="container">
       <header class="header"></header>
+
+      <!-- MODAL -->
+      <dialog class="pokemon-modal"></dialog>
+
+      <!-- GRID -->
       <ul class="pokemon-container">
         <!-- <div class="preview-pokemon"></div> -->
       </ul>
-      <div class="pagination"></div>
     </div>
+    <script
+      type="module"
+      src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
   </body>
 </html>
