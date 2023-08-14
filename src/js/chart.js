@@ -13,6 +13,11 @@ export const createChart = async function (data, id, label) {
       ],
     },
     options: {
+      plugins: {
+        legend: {
+          display: false,
+        },
+      },
       scale: {
         min: 10,
         max: 250,

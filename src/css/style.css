@@ -143,14 +143,14 @@ html {
 }
 
 body {
-  /* height: 100%; */
   font-size: var(--font-size-1);
+  letter-spacing: var(--font-letterspacing-0);
   font-family: "Roboto Mono", var(--font-mono);
   font-weight: 400;
-  letter-spacing: var(--font-letterspacing-0);
   color: var(--gray-8);
   background-color: #fff;
   overflow-x: hidden;
+  background-color: var(--gray-1);
 }
 .scroll-lock {
   overflow: hidden;
@@ -165,7 +165,6 @@ li {
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  background-color: var(--gray-1);
 }
 .header {
   width: 100%;
@@ -288,6 +287,13 @@ li {
   background-color: rgba(0, 0, 0, 0.1);
 }
 
+/* polifill */
+dialog + .backdrop {
+  -webkit-backdrop-filter: blur(1px);
+  backdrop-filter: blur(1px);
+  background-color: rgba(0, 0, 0, 0.1);
+}
+
 .dialog-wrapper {
   display: grid;
   grid-template-rows: auto 1fr;
@@ -357,4 +363,23 @@ dialog > form > article {
   width: 23rem;
   height: 23rem;
   /* background-color: #b97fc9; */
+}
+
+#spinner {
+  margin: 3rem;
+  text-align: center;
+  /* transform: scale(1); */
+  letter-spacing: normal;
+  line-height: normal;
+  /* animation: var(--animation-spin); */
+  animation: spin 2s linear infinite;
+}
+
+.ph-spinner {
+  color: var(--gray-6);
+  font-size: 60px;
+}
+
+.hidden {
+  display: none;
 }

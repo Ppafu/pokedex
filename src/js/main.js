@@ -1,5 +1,6 @@
 "use strict";
 
+import dialogPolyfill from "dialog-polyfill";
 // import { AJAX } from "./helpers";
 import { API_URL, NUMBER_OF_POKEMON } from "./config";
 import { infiniteScroll } from "./infiniteScroll";
@@ -25,7 +26,17 @@ class Pokemon {
   _nameToUpperCase() {
     return `${this.name[0].toUpperCase() + this.name.slice(1)}`;
   }
-  _types() {}
+
+  _generateTypes() {
+    let markup = "";
+    const length = this.types.length;
+    for (let i = 0; i < length; i++) {
+      const value = this.types[i].type.name;
+      markup += `<div class="type ${value}">${value}</div>`;
+    }
+    return markup;
+  }
+
   _generateMarkup() {
     let markup = `<div class="id"><p>#${this.id}</p></div>
     <div class="img-container"><img class="img-pokemon" src="https://img.pokemondb.net/artwork/large/${
@@ -33,15 +44,11 @@ class Pokemon {
     }.jpg" ${this.id > 16 ? "loading = lazy" : "loading = eager"} alt="${
       this.name
     }"></div>
-    <div class="name">${this._nameToUpperCase()}</div><div class="type-container">`;
+    <div class="name">${this._nameToUpperCase()}</div>
 
-    const length = this.types.length;
-    for (let i = 0; i < length; i++) {
-      const value = this.types[i].type.name;
-      markup += `<div class="type ${value}">${value}</div>`;
-    }
-
-    markup += "</div>";
+    <div class="type-container">
+    ${this._generateTypes()}
+    </div>`;
     return markup;
   }
   _generateChart() {
@@ -64,7 +71,7 @@ class Pokemon {
               <div class="name-modal">${this._nameToUpperCase()}</div>
             </div>
              <button class="btn btn--delete">
-                <ion-icon name="close-outline"></ion-icon>
+             <i class="ph-bold ph-x"></i>
              </button>
           </header>
         <article>
@@ -76,9 +83,13 @@ class Pokemon {
           <canvas id="${this.id}"></canvas>
           </div>
           <div class="stats-modal">${stats}</div>
+
+          <div class="type-container">
+          ${this._generateTypes()}
+          </div>
+
         </article>  
       </form>
-   
       `;
     return markup;
   }
@@ -98,36 +109,49 @@ class Pokemon {
       dialogElement.close();
     }
   }
-
-  _renderModal() {
-    const parentElement = document.querySelector("dialog");
-    const markup = this._generateModalMarkup();
-    parentElement.innerHTML = "";
-    parentElement.insertAdjacentHTML("afterbegin", markup);
-    this._generateChart();
-    this._lockScroll();
+  _dialogPolyfill() {
+    const isBrowserNotSupportDialog = window.HTMLDialogElement === undefined;
+    if (isBrowserNotSupportDialog) {
+      const dialog = document.querySelector("dialog");
+      dialogPolyfill.registerDialog(dialog);
+    }
   }
 
+  _renderModal() {
+    const dialog = document.querySelector("dialog");
+    const markup = this._generateModalMarkup();
+    dialog.innerHTML = "";
+    dialog.insertAdjacentHTML("afterbegin", markup);
+    this._generateChart();
+    dialog.showModal();
+    this._lockScroll();
+    dialog.addEventListener("close", this._returnScroll);
+    dialog.addEventListener("click", this._closeOnBackDropClick);
+    this._dialogPolyfill();
+  }
   render() {
     const markup = this._generateMarkup();
     // Create a new DOM element from the markup and add the pokemon-preview class directly
-    const pokemonElement = this._createElement(markup, "li", "pokemon-preview");
-
-    const dialog = document.querySelector("dialog");
-    // Add the event listener to the new element
-    pokemonElement.addEventListener("click", () => {
-      this._renderModal();
-      dialog.showModal();
-      dialog.addEventListener("close", this._returnScroll);
-      dialog.addEventListener("click", this._closeOnBackDropClick);
-    });
+    const pokemonElement = this._createElement(
+      markup,
+      "li",
+      "pokemon-preview hidden"
+    );
 
     // Append the new element to the parent element
     this._parentElement.appendChild(pokemonElement);
+
+    // Add the event listener to the new element
+    pokemonElement.addEventListener("click", () => {
+      this._renderModal();
+    });
   }
 }
 
+/////////////////////////////////
+
 const arrayPokemon = Array.from({ length: NUMBER_OF_POKEMON }, (_, i) => i + 1);
+const parentElement = document.querySelector(".container");
 
 function toObject(keys, values) {
   const obj = Object.fromEntries(
@@ -152,6 +176,24 @@ const createPokemonObject = function (data) {
 };
 
 /////////////////////
+
+const renderSpinner = function () {
+  const markup = `<i class="ph-bold ph-spinner"></i>`;
+  const spinnerElement = document.createElement("div");
+  spinnerElement.setAttribute("id", "spinner");
+  spinnerElement.innerHTML = markup;
+
+  // parentElement.innerHTML = "";
+  parentElement.appendChild(spinnerElement);
+};
+
+const deleteSpinner = function () {
+  const spinnerElement = document.getElementById("spinner");
+  if (spinnerElement) {
+    spinnerElement.parentNode.removeChild(spinnerElement);
+  }
+};
+
 const fetchPokemon = async function (startIndex, endIndex) {
   try {
     const pokemonIds = arrayPokemon.slice(startIndex, endIndex);
@@ -179,10 +221,18 @@ const loadPokemon = async function () {
       const startIndex = (page - 1) * itemsPerPage;
       const endIndex = startIndex + itemsPerPage;
 
+      renderSpinner();
       await fetchPokemon(startIndex, endIndex);
+
+      const hiddenItems = document.querySelectorAll(".pokemon-preview.hidden");
+      hiddenItems.forEach((item) => {
+        item.classList.remove("hidden");
+      });
+
+      deleteSpinner();
+
       page++;
     };
-
     await loadPokemonPage();
     infiniteScroll(loadPokemonPage);
   } catch (err) {
@@ -190,4 +240,5 @@ const loadPokemon = async function () {
     throw err;
   }
 };
+
 loadPokemon();
