@@ -1,6 +1,5 @@
 import { createRadarChart, createBarChart } from "./chart";
 import dialogPolyfill from "dialog-polyfill";
-import { carousel } from "./carousel";
 
 export default class Pokemon {
   _parentElement = document.querySelector(".pokemon-container");
