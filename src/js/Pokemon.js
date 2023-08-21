@@ -62,14 +62,7 @@ export default class Pokemon {
     }
 
     let markup = `
-    <button class="btn carousel btn--previous">
-    <i class="ph-bold ph-caret-circle-left"></i>
-    </button>
-    <button class="btn carousel btn--next">
-    <i class="ph-bold ph-caret-circle-right"></i>
-    </button>
-
-        <form class="dialog-wrapper" method="dialog">
+            <form class="dialog-wrapper" method="dialog">
             <header>
               <section class="info-modal">
                 <div class="id id-modal"><p>#${this.id}</p></div>

@@ -5,9 +5,7 @@ import { API_URL, NUMBER_OF_POKEMON } from "./config";
 import { infiniteScroll } from "./infiniteScroll";
 import Pokemon from "./Pokemon";
 
-/////////////////////////////////  _generateCarousel() {
-//   carousel(this.id);
-// }
+/////////////////////////////////
 
 const arrayPokemon = Array.from({ length: NUMBER_OF_POKEMON }, (_, i) => i + 1);
 const parentElement = document.querySelector(".container");
