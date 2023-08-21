@@ -148,7 +148,6 @@ body {
   font-family: "Roboto Mono", var(--font-mono);
   font-weight: 400;
   color: var(--gray-8);
-  background-color: #fff;
   overflow-x: hidden;
   background-color: var(--gray-1);
 }
@@ -167,21 +166,27 @@ li {
   justify-content: center;
 }
 .header {
-  width: 100%;
+  /* width: 100%;
   height: var(--size-8);
-  background-color: var(--indigo-3);
+  background-color: var(--indigo-3); */
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: var(--size-7);
+}
+header > img {
+  width: 25rem;
 }
 
 .pokemon-container {
   display: grid;
-  grid-template-columns: auto auto auto auto;
+  grid-template-columns: repeat(4, auto);
   margin: auto;
   justify-content: center;
   width: min(100% - 3rem, 60rem);
 
   gap: var(--size-3);
-
-  /* background-color: var(--gray-6); */
 }
 
 .pokemon-preview {
@@ -207,14 +212,9 @@ li {
 }
 
 .id {
-  /* display: flex; */
   width: 100%;
   color: var(--gray-6);
-  /* font-weight: var(--font-weight-5); */
-  /* padding: var(--size-1); */
-}
-.id p {
-  margin: 0.25rem 0 0 0.5rem;
+  padding: 0.25rem 0 0 0.5rem;
 }
 
 .img-container {
@@ -230,7 +230,8 @@ li {
   object-fit: contain;
 }
 .name {
-  margin-bottom: var(--size-2);
+  font-size: var(--font-size-2);
+  margin-bottom: var(--size-1);
   font-weight: 600;
 }
 
@@ -256,24 +257,18 @@ li {
 .pokemon-modal {
   margin: auto;
   display: grid;
-  /* position: fixed;
-  left: 49.65%;
-  top: 50%;
-  transform: translate(-50%, -50%); */
 
   width: min(100% - 2rem, 60rem);
-  height: min(100% - 2rem, 33rem);
-
   border-radius: var(--radius-3);
 
   border: none;
 
-  /* transition: transform 0.3s ease-in-out; */
   background-color: var(--gray-1);
   padding: 0;
-  /* overflow: hidden; */
-
   box-shadow: var(--shadow-4);
+  transition: transform 0.3s ease-in-out;
+
+  overflow: visible;
 }
 
 .pokemon-modal:not([open]) {
@@ -284,48 +279,97 @@ li {
 .pokemon-modal::backdrop {
   -webkit-backdrop-filter: blur(1px);
   backdrop-filter: blur(1px);
-  background-color: rgba(0, 0, 0, 0.1);
+  background-color: rgba(0, 0, 0, 0.15);
 }
 
 /* polifill */
 dialog + .backdrop {
   -webkit-backdrop-filter: blur(1px);
   backdrop-filter: blur(1px);
-  background-color: rgba(0, 0, 0, 0.1);
+  background-color: rgba(0, 0, 0, 0.15);
 }
 
 .dialog-wrapper {
+  position: relative;
+  width: 100%;
+  height: 100%;
   display: grid;
   grid-template-rows: auto 1fr;
-  /* padding: 0.5rem; */
-  width: 100%;
-  /* height: 100%; */
+  padding: var(--size-3);
+  gap: var(--size-2);
 }
 
 dialog > form > header {
   /* grid-column-start: span 2; */
   display: flex;
-  gap: var(--size-3);
+  gap: var(--size-2);
   justify-content: space-between;
   align-items: flex-start;
 }
 
 .info-modal {
-  margin: var(--size-3);
   display: flex;
+  gap: var(--size-2);
+  align-items: center;
+  width: 100%;
+
+  background-color: rgba(255, 255, 255, 0.5);
+  /* background-color: #b97fc9; */
+
+  border-radius: var(--radius-3);
+
+  padding-block: var(--size-2);
+  padding-inline: var(--size-3);
+}
+
+.name-modal {
+  margin: 0;
+  font-size: var(--font-size-4);
+}
+
+.id.id-modal {
+  width: auto;
+  padding: 0;
+  font-size: var(--font-size-3);
+}
+
+.btn {
+  display: flex;
+  cursor: pointer;
+  align-items: center;
+  justify-content: center;
+  background: none;
+  border: none;
+  outline: none;
+
+  font-size: var(--font-size-5);
+  color: var(--gray-6);
+  /* background-color: #b97fc9; */
+  transition: outline-color 0.3s;
+}
+
+.btn--delete {
+  padding: 0.65rem;
+  background-color: rgba(255, 255, 255, 0.5);
+  border-radius: var(--radius-3);
 }
 
 dialog > form > article {
-  display: flex;
-  justify-content: space-around;
-  flex-wrap: wrap;
+  display: grid;
+  grid-template-columns: auto 1fr;
+  gap: var(--size-2);
+
+  /* height: 100%; */
+
+  /* padding-block: var(--size-3);
+  padding-inline: var(--size-5); */
 }
 
 .img-container-modal {
   display: flex;
-  height: 25rem;
-  width: 25rem;
-  padding: 1rem;
+  width: 29rem;
+  height: 29rem;
+  padding: var(--size-3);
   justify-content: center;
   align-items: center;
   background-color: #fff;
@@ -335,34 +379,56 @@ dialog > form > article {
   height: 100%;
   object-fit: contain;
 }
-
-.btn {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  background: none;
-  border: none;
-  outline: none;
-  /* background-color: #b97fc9; */
-}
-
-.btn--delete {
-  width: var(--size-7);
-  height: var(--size-7);
-
-  border-radius: var(--radius-6);
-  cursor: pointer;
-  font-size: var(--font-size-5);
-  transition: outline-color 0.3s;
-}
-
 .stats-modal {
+  display: flex;
+  flex-direction: column;
+  gap: var(--size-2);
+}
+.description {
+  width: 100%;
+  font-size: 0.93rem;
+  line-height: 1;
+  word-wrap: break-word;
+  padding-block: var(--size-2);
+  padding-inline: 0.7rem;
+  background-color: rgba(255, 255, 255, 0.5);
+  border-radius: var(--radius-3);
 }
 
-.chart-modal {
-  width: 23rem;
-  height: 23rem;
-  /* background-color: #b97fc9; */
+.chart {
+  padding: 0.5rem;
+  background-color: rgba(255, 255, 255, 0.5);
+  border-radius: var(--radius-3);
+}
+.chart-radar {
+  flex: 2;
+}
+
+.chart-radar canvas {
+}
+
+.chart-bar {
+  flex: 1;
+}
+.chart-bar canvas {
+}
+
+.carousel {
+  position: absolute;
+  top: 50%;
+  font-size: var(--font-size-8);
+  /* background-color: var(--gray-0); */
+  border-radius: var(--radius-6);
+  z-index: 9999;
+  padding: 0.25rem;
+  transform: translate(0, -50%);
+}
+.btn--previous {
+  left: -4rem;
+}
+
+.btn--next {
+  right: -4rem;
 }
 
 #spinner {
@@ -377,7 +443,7 @@ dialog > form > article {
 
 .ph-spinner {
   color: var(--gray-6);
-  font-size: 60px;
+  font-size: 4rem;
 }
 
 .hidden {
