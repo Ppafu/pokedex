@@ -26,7 +26,7 @@ export const createRadarChart = async function (data, id, label) {
         min: 5,
         // max: 250,
         ticks: {
-          stepSize: 20,
+          stepSize: 25,
         },
       },
       scales: {
@@ -78,7 +78,7 @@ export const createBarChart = async function (data, id, label) {
             "rgba(54, 162, 235)",
             "rgba(245, 120, 255)",
           ],
-          barThickness: 12,
+          barThickness: 13,
           borderRadius: 99,
           borderSkipped: false,
         },
@@ -88,6 +88,7 @@ export const createBarChart = async function (data, id, label) {
       aspectRatio: 3.2,
       responsive: true,
       indexAxis: "y",
+      barPercentage: 0.8,
       events: [],
       plugins: {
         legend: {

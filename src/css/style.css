@@ -135,7 +135,7 @@ h6 {
 html,
 body {
   scrollbar-gutter: stable;
-  width: 100vw;
+  /* width: 100vw; */
 }
 
 html {
@@ -143,6 +143,9 @@ html {
 }
 
 body {
+  display: grid;
+  grid: [stack] 1fr / min-content [stack] 1fr;
+  direction: rtl;
   font-size: var(--font-size-1);
   letter-spacing: var(--font-letterspacing-0);
   font-family: "Roboto Mono", var(--font-mono);
@@ -158,6 +161,47 @@ body {
 li {
   list-style: none;
 }
+
+.btn {
+  display: flex;
+  cursor: pointer;
+  align-items: center;
+  justify-content: center;
+  background: none;
+  border: none;
+  outline: none;
+  font-size: var(--font-size-5);
+  color: var(--gray-6);
+  transition: outline-color 0.3s;
+}
+
+/* HEADER */
+
+.header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin: var(--size-4);
+}
+
+.img-container-header {
+  flex: 1;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-left: 2.5rem;
+}
+
+.img-container-header img {
+  width: 30rem;
+  height: auto;
+}
+.btn--list {
+  align-self: flex-start;
+  font-size: 2.5rem;
+}
+
+/* MAIN */
 .container {
   display: flex;
   /* width: 100vw; */
@@ -165,22 +209,9 @@ li {
   align-items: center;
   justify-content: center;
 }
-.header {
-  /* width: 100%;
-  height: var(--size-8);
-  background-color: var(--indigo-3); */
-
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  margin: var(--size-7);
-}
-header > img {
-  width: 25rem;
-}
-
 .pokemon-container {
   display: grid;
+  direction: ltr;
   grid-template-columns: repeat(4, auto);
   margin: auto;
   justify-content: center;
@@ -257,6 +288,7 @@ header > img {
 .pokemon-modal {
   margin: auto;
   display: grid;
+  direction: ltr;
 
   width: min(100% - 2rem, 60rem);
   border-radius: var(--radius-3);
@@ -333,21 +365,6 @@ dialog > form > header {
   font-size: var(--font-size-3);
 }
 
-.btn {
-  display: flex;
-  cursor: pointer;
-  align-items: center;
-  justify-content: center;
-  background: none;
-  border: none;
-  outline: none;
-
-  font-size: var(--font-size-5);
-  color: var(--gray-6);
-  /* background-color: #b97fc9; */
-  transition: outline-color 0.3s;
-}
-
 .btn--delete {
   padding: 0.65rem;
   background-color: rgba(255, 255, 255, 0.5);
@@ -357,6 +374,7 @@ dialog > form > header {
 dialog > form > article {
   display: grid;
   grid-template-columns: auto 1fr;
+  grid-template-rows: 1fr auto auto;
   gap: var(--size-2);
 
   /* height: 100%; */
@@ -366,6 +384,7 @@ dialog > form > article {
 }
 
 .img-container-modal {
+  grid-row-start: span 3;
   display: flex;
   width: 29rem;
   height: 29rem;
@@ -385,30 +404,29 @@ dialog > form > article {
   gap: var(--size-2);
 }
 .description {
-  width: 100%;
+  display: flex;
+  align-items: center;
   font-size: 0.93rem;
-  line-height: 1;
+  line-height: var(--font-lineheight-0);
   word-wrap: break-word;
-  padding-block: var(--size-2);
+  padding-block: var(--size-1);
   padding-inline: 0.7rem;
   background-color: rgba(255, 255, 255, 0.5);
   border-radius: var(--radius-3);
 }
 
 .chart {
-  padding: 0.5rem;
+  padding: var(--size-2);
   background-color: rgba(255, 255, 255, 0.5);
   border-radius: var(--radius-3);
 }
 .chart-radar {
-  flex: 2;
 }
 
 .chart-radar canvas {
 }
 
 .chart-bar {
-  flex: 1;
 }
 .chart-bar canvas {
 }
@@ -416,10 +434,8 @@ dialog > form > article {
 #spinner {
   margin: 3rem;
   text-align: center;
-  /* transform: scale(1); */
   letter-spacing: normal;
   line-height: normal;
-  /* animation: var(--animation-spin); */
   animation: spin 2s linear infinite;
 }
 

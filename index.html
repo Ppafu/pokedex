@@ -21,18 +21,28 @@
     <title>Pokédex</title>
   </head>
   <body>
-    <div class="container">
+    <aside></aside>
+
+    <main>
       <header class="header">
-        <img src="./src/img/pokedex.svg" alt="pokedex" />
+        <button class="test btn btn--list">
+          <i class="ph-bold ph-list"></i>
+        </button>
+
+        <div class="test img-container-header">
+          <img src="./src/img/pokedex.svg" alt="pokedex" />
+        </div>
       </header>
 
-      <!-- MODAL -->
-      <dialog class="pokemon-modal"></dialog>
+      <div class="container">
+        <!-- MODAL -->
+        <dialog class="pokemon-modal"></dialog>
 
-      <!-- GRID -->
-      <ul class="pokemon-container">
-        <!-- <div class="preview-pokemon"></div> -->
-      </ul>
-    </div>
+        <!-- GRID -->
+        <ul class="pokemon-container">
+          <!-- <div class="preview-pokemon"></div> -->
+        </ul>
+      </div>
+    </main>
   </body>
 </html>

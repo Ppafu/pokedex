@@ -60,38 +60,46 @@ export default class Pokemon {
       stats += `<li>${key}: ${value}</li>`;
     }
 
+    //
+    // <section class="stats-modal">
     let markup = `
             <form class="dialog-wrapper" method="dialog">
             <header>
-              <section class="info-modal">
+            <section class="info-modal">
                 <div class="id id-modal"><p>#${this.id}</p></div>
                 <h2 class="name name-modal">${this._nameToUpperCase()}</h2>
                 <div class="type-container">
                   ${this._generateTypes()}
                 </div>
-              </section>
+                </section>
+
                <button class="btn btn--delete">
                <i class="ph-bold ph-x"></i>
                </button>
             </header>
   
+
           <article>
-            <div class="img-container-modal"><img class="img-pokemon-modal" src="https://img.pokemondb.net/artwork/large/${
+            <section class="img-container-modal">
+            <img class="img-pokemon-modal" src="https://img.pokemondb.net/artwork/large/${
               this.name
-            }.jpg" alt="${this.name}"></div>
+            }.jpg" alt="${this.name}">
+            </section>
   
-            <section class="stats-modal">
-              <div class = "description">${this.description.replace(
-                "",
-                " "
-              )}</div>
-              <div class="chart chart-radar"><canvas id="${
+    
+              <section class = "description">
+              <p>
+              ${this.description.replace("", " ")}
+              </p>
+              </section>
+
+              <section class="chart chart-radar"><canvas id="${
                 this.id
-              }-radar"></canvas></div>
+              }-radar"></canvas></section>
   
-              <div class="chart chart-bar">
-             <canvas id="${this.id}-bar"></canvas></div>
-               </section>
+              <section class="chart chart-bar">
+             <canvas id="${this.id}-bar"></canvas></section>
+
           </article>  
         </form>
 
