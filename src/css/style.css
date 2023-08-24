@@ -178,30 +178,59 @@ li {
 /* HEADER */
 
 .header {
+  position: relative;
   display: flex;
+  flex-direction: column;
   align-items: center;
-  justify-content: space-between;
-  margin: var(--size-4);
+  margin: var(--size-6);
 }
 
-.img-container-header {
-  flex: 1;
+.logo {
   display: flex;
   justify-content: center;
   align-items: center;
-  margin-left: 2.5rem;
+  /* margin-left: 2.5rem; */
 }
 
-.img-container-header img {
+.logo img {
   width: 30rem;
-  height: auto;
 }
 .btn--list {
+  position: absolute;
   align-self: flex-start;
   font-size: 2.5rem;
 }
 
+/* NAV */
+body > aside {
+  grid-area: stack;
+  display: grid;
+  grid-template-columns: [escape] 1fr [nav] 2fr;
+  /* max-height: 100vh; */
+}
+
+nav {
+  width: 60%;
+  position: sticky;
+  display: inline-flex;
+  flex-direction: column;
+  padding: var(--size-6);
+  font-size: var(--font-size-3);
+  color: var(--gray-2);
+  background-color: var(--gray-5);
+  z-index: 9990;
+  /* box-shadow: var(--shadow-7); */
+}
+nav:target {
+  visibility: visible;
+  transform: translateX(0);
+  transition: transform var(--duration) var(--easeOutExpo);
+}
+
 /* MAIN */
+body > main {
+  grid-area: stack;
+}
 .container {
   display: flex;
   /* width: 100vw; */
@@ -234,6 +263,9 @@ li {
 
   transition: all 0.25s;
   backface-visibility: hidden;
+
+  @media (min-width: 320px) {
+  }
 }
 
 .pokemon-preview:hover {

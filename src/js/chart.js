@@ -76,7 +76,7 @@ export const createBarChart = async function (data, id, label) {
             "rgba(255, 205, 86)",
             "rgba(75, 192, 192)",
             "rgba(54, 162, 235)",
-            "rgba(245, 120, 255)",
+            "rgba(245, 120, 245)",
           ],
           barThickness: 13,
           borderRadius: 99,
