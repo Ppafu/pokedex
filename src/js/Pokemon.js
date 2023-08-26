@@ -61,7 +61,7 @@ export default class Pokemon {
     }
 
     //
-    // <section class="stats-modal">
+
     let markup = `
             <form class="dialog-wrapper" method="dialog">
             <header>
@@ -73,7 +73,7 @@ export default class Pokemon {
                 </div>
                 </section>
 
-               <button class="btn btn--delete">
+               <button class="btn btn--close-modal">
                <i class="ph-bold ph-x"></i>
                </button>
             </header>

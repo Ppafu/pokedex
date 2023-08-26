@@ -143,9 +143,6 @@ html {
 }
 
 body {
-  display: grid;
-  grid: [stack] 1fr / min-content [stack] 1fr;
-  direction: rtl;
   font-size: var(--font-size-1);
   letter-spacing: var(--font-letterspacing-0);
   font-family: "Roboto Mono", var(--font-mono);
@@ -197,39 +194,75 @@ li {
 }
 .btn--list {
   position: absolute;
-  align-self: flex-start;
+  align-self: flex-end;
   font-size: 2.5rem;
 }
 
 /* NAV */
 body > aside {
-  grid-area: stack;
-  display: grid;
-  grid-template-columns: [escape] 1fr [nav] 2fr;
-  /* max-height: 100vh; */
+}
+.sidenav {
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  padding: var(--size-3);
+  gap: var(--size-4);
+
+  position: fixed;
+  top: 0; /* Stay at the top */
+  right: 0;
+  z-index: 1;
+  height: 100%;
+  width: 25rem;
+  visibility: hidden;
+
+  background-color: var(--gray-4);
+  box-shadow: var(--shadow-4);
 }
 
-nav {
-  width: 60%;
-  position: sticky;
-  display: inline-flex;
-  flex-direction: column;
-  padding: var(--size-6);
-  font-size: var(--font-size-3);
-  color: var(--gray-2);
-  background-color: var(--gray-5);
-  z-index: 9990;
-  /* box-shadow: var(--shadow-7); */
+.btn--close {
+  align-self: flex-start;
 }
-nav:target {
-  visibility: visible;
-  transform: translateX(0);
-  transition: transform var(--duration) var(--easeOutExpo);
+.search-wrapper {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  gap: var(--size-2);
+}
+
+.input-container {
+  display: flex;
+  align-items: center;
+  /* width: calc(100% - 3rem); */
+  width: 100%;
+  border-radius: var(--radius-2);
+  background-color: rgb(250, 250, 250);
+  height: var(--size-8);
+  padding: var(--size-1);
+
+  box-shadow: 0 0 0 0.15rem transparent;
+  transition: box-shadow 0.3s;
+}
+
+.search {
+  width: min(100% - 2.5rem); /*???*/
+
+  height: 100%;
+  padding: 0 var(--size-2);
+  border: none;
+
+  background-color: transparent;
+}
+input::placeholder {
+  color: hsla(210, 10%, 23%, 0.8);
+}
+
+input:focus::placeholder {
+  color: transparent;
 }
 
 /* MAIN */
 body > main {
-  grid-area: stack;
 }
 .container {
   display: flex;
@@ -240,7 +273,6 @@ body > main {
 }
 .pokemon-container {
   display: grid;
-  direction: ltr;
   grid-template-columns: repeat(4, auto);
   margin: auto;
   justify-content: center;
@@ -320,7 +352,6 @@ body > main {
 .pokemon-modal {
   margin: auto;
   display: grid;
-  direction: ltr;
 
   width: min(100% - 2rem, 60rem);
   border-radius: var(--radius-3);
@@ -397,7 +428,7 @@ dialog > form > header {
   font-size: var(--font-size-3);
 }
 
-.btn--delete {
+.btn--close-modal {
   padding: 0.65rem;
   background-color: rgba(255, 255, 255, 0.5);
   border-radius: var(--radius-3);
@@ -405,21 +436,18 @@ dialog > form > header {
 
 dialog > form > article {
   display: grid;
-  grid-template-columns: auto 1fr;
+  grid-template-columns: 1fr 1fr;
   grid-template-rows: 1fr auto auto;
   gap: var(--size-2);
-
-  /* height: 100%; */
-
-  /* padding-block: var(--size-3);
-  padding-inline: var(--size-5); */
 }
 
 .img-container-modal {
   grid-row-start: span 3;
   display: flex;
-  width: 29rem;
-  height: 29rem;
+
+  width: 100%;
+  aspect-ratio: 1;
+
   padding: var(--size-3);
   justify-content: center;
   align-items: center;

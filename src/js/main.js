@@ -1,16 +1,17 @@
 "use strict";
 
-// import { AJAX } from "./helpers";
 import { API_URL, NUMBER_OF_POKEMON } from "./config";
 import { infiniteScroll } from "./infiniteScroll";
-import Pokemon from "./Pokemon";
+import { sideNav } from "./sideNav";
+import { fetchPokemonData, renderPokemon } from "./fetchAndRender";
+import { searchPokemon } from "./search";
 
 /////////////////////////////////
 
 const arrayPokemon = Array.from({ length: NUMBER_OF_POKEMON }, (_, i) => i + 1);
 const parentElement = document.querySelector(".container");
 
-/////////////////////
+/////////////////////////////////
 
 const renderSpinner = function () {
   const markup = `<i class="ph-bold ph-spinner"></i>`;
@@ -31,47 +32,13 @@ const deleteSpinner = function () {
 
 //////////////////
 
-function toObject(keys, values) {
-  const obj = Object.fromEntries(
-    keys.map((key, index) => [key, values[index]])
-  );
-
-  return obj;
-}
-
-const createPokemonObject = function (data, moreData) {
-  const id = ("000" + data.id).slice(-4);
-  const name = data.name;
-  const types = data.types;
-
-  // MODAL
-  const statName = data.stats.map((el) => el.stat.name);
-  const statNum = data.stats.map((el) => el.base_stat);
-  const stats = toObject(statName, statNum);
-
-  const description = moreData.flavor_text_entries.find(
-    (item) => item.language.name === "en"
-  ).flavor_text;
-  // console.log(description);
-
-  return new Pokemon(id, name, types, stats, description);
-};
-
 const fetchPokemon = async function (startIndex, endIndex) {
   try {
     const pokemonIds = arrayPokemon.slice(startIndex, endIndex);
 
     for (const id of pokemonIds) {
-      const response = await fetch(`${API_URL}${id}`);
-      const pokemonData = await response.json();
-
-      const responseDescription = await fetch(
-        `https://pokeapi.co/api/v2/pokemon-species/${id}`
-      );
-      const pokemonDescription = await responseDescription.json();
-
-      const pokemon = createPokemonObject(pokemonData, pokemonDescription);
-      pokemon.render();
+      const data = await fetchPokemonData(id);
+      renderPokemon(data);
     }
   } catch (err) {
     console.error(`${err}💥`);
@@ -91,11 +58,6 @@ const loadPokemon = async function () {
       renderSpinner();
       await fetchPokemon(startIndex, endIndex);
 
-      const hiddenItems = document.querySelectorAll(".pokemon-preview.hidden");
-      hiddenItems.forEach((item) => {
-        item.classList.remove("hidden");
-      });
-
       deleteSpinner();
 
       page++;
@@ -108,4 +70,9 @@ const loadPokemon = async function () {
   }
 };
 
-loadPokemon();
+const init = function () {
+  loadPokemon();
+  sideNav();
+};
+
+init();

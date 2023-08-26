@@ -21,19 +21,28 @@
     <title>Pokédex</title>
   </head>
   <body>
-    <aside id="navigation">
-      <nav>
-        <h4>My</h4>
-        <a href="#">Dashboard</a>
-        <a href="#">Profile</a>
-        <a href="#">Preferences</a>
-        <a href="#">Archive</a>
+    <aside>
+      <div class="sidenav" id="sidenav">
+        <button class="btn btn--close">
+          <i class="ph-bold ph-x"></i>
+        </button>
 
-        <h4>Settings</h4>
-        <a href="#">Accessibility</a>
-        <a href="#">Theme</a>
-        <a href="#">Admin</a>
-      </nav>
+        <div class="search-wrapper">
+          <label for="search">Name or Number:</label>
+          <div class="input-container">
+            <input
+              type="search"
+              class="search"
+              id="search"
+              placeholder="Search"
+              maxlength="500" />
+
+            <button class="btn btn--search">
+              <i class="ph-bold ph-magnifying-glass"></i>
+            </button>
+          </div>
+        </div>
+      </div>
     </aside>
 
     <main>
