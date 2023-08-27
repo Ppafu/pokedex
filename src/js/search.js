@@ -1,4 +1,4 @@
-import { fetchPokemonData, renderPokemon } from "./fetchAndRender";
+import { fetchPokemon, renderPokemon } from "./fetchAndRender";
 
 const parentElement = document.querySelector(".pokemon-container");
 const search = document.querySelector(".search");
@@ -10,15 +10,15 @@ const getQuery = function () {
   return query;
 };
 
-const fetchPokemon = async function () {
+const fetchPokemonSearch = async function () {
   const query = getQuery();
 
-  const data = await fetchPokemonData(query);
+  const data = await fetchPokemon(query);
   renderPokemon(data);
 };
 
 export const searchPokemon = async function () {
-  fetchPokemon();
+  fetchPokemonSearch();
 
   parentElement.innerHTML = "";
 };
@@ -29,5 +29,3 @@ search.addEventListener("keydown", function (event) {
     searchPokemon();
   }
 });
-
-// https://pokeapi.co/api/v2/type/

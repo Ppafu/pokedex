@@ -9,7 +9,7 @@ const deleteHiddenClass = function () {
   });
 };
 
-export const fetchPokemonData = async function (value) {
+export const fetchPokemon = async function (value) {
   try {
     const pokemonData = await AJAX(`${API_URL}/${value}`);
     const pokemonDescriptionData = await AJAX(`${API_URL}-species/${value}`);

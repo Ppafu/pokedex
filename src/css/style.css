@@ -233,7 +233,6 @@ body > aside {
 .input-container {
   display: flex;
   align-items: center;
-  /* width: calc(100% - 3rem); */
   width: 100%;
   border-radius: var(--radius-2);
   background-color: rgb(250, 250, 250);
@@ -272,9 +271,10 @@ body > main {
   justify-content: center;
 }
 .pokemon-container {
-  display: grid;
-  grid-template-columns: repeat(4, auto);
+  display: flex;
+  flex-wrap: wrap;
   margin: auto;
+  align-items: center;
   justify-content: center;
   width: min(100% - 3rem, 60rem);
 
