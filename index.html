@@ -5,10 +5,9 @@
     <meta
       name="viewport"
       content="height=device-height, initial-scale=1, user-scalable=no, viewport-fit=cover" />
-    <!-- <link rel="shortcut icon" href="favicon.png" type="image/x-icon" /> -->
 
-    <script type="module" src="src/js/main.js" defer></script>
-    <!-- <script type="module" src="test.js" defer></script> -->
+    <script type="module" src="src/js/main.js"></script>
+
     <script src="https://unpkg.com/@phosphor-icons/web"></script>
 
     <link rel="preconnect" href="https://fonts.googleapis.com" />
@@ -16,8 +15,10 @@
     <link
       href="https://fonts.googleapis.com/css2?family=Roboto+Mono:wght@300;400;500;600;700&family=Rubik:wght@400;500;600;700;800&display=swap"
       rel="stylesheet" />
+
     <link rel="stylesheet" href="/src/css/style.css" />
-    <!-- <link rel="stylesheet" href="queries.css" /> -->
+    <link rel="stylesheet" href="/src/css/types.css" />
+
     <title>Pokédex</title>
   </head>
   <body>
@@ -54,15 +55,12 @@
           <img src="./src/img/pokedex.svg" alt="pokedex" />
         </div>
       </header>
-
       <div class="container">
         <!-- MODAL -->
-        <dialog class="pokemon-modal" id="dialog"></dialog>
+        <dialog class="dialog" id="pokemon-modal"></dialog>
 
-        <!-- GRID -->
-        <ul class="pokemon-container">
-          <!-- <div class="preview-pokemon"></div> -->
-        </ul>
+        <!-- MAIN -->
+        <ul class="pokemon-container"></ul>
       </div>
     </main>
   </body>

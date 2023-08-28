@@ -8,10 +8,12 @@ export const sideNav = function () {
 
   btnMenu.addEventListener("click", () => {
     sideNav.style.visibility = "visible";
+    sideNav.style.width = "25rem";
   });
 
   btnClose.addEventListener("click", () => {
     sideNav.style.visibility = "hidden";
+    sideNav.style.width = "0px";
   });
 
   //Closing modal without closing sidenav
@@ -21,6 +23,7 @@ export const sideNav = function () {
         dialog.close();
       } else {
         sideNav.style.visibility = "hidden";
+        sideNav.style.width = "0px";
       }
     }
   });

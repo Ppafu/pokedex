@@ -16,6 +16,7 @@ export const createRadarChart = async function (data, id, label) {
     options: {
       events: [],
       responsive: true,
+      maintainAspectRatio: false,
       aspectRatio: 2,
       plugins: {
         legend: {
@@ -47,6 +48,7 @@ export const createRadarChart = async function (data, id, label) {
           },
         },
       },
+
       elements: {
         line: {
           backgroundColor: ["#fff"],

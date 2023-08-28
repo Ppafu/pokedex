@@ -132,13 +132,14 @@ export default class Pokemon {
 
   _renderModal() {
     const dialog = document.querySelector("dialog");
+
     const markup = this._generateModalMarkup();
     dialog.innerHTML = "";
     dialog.insertAdjacentHTML("afterbegin", markup);
     this._generateChart();
     dialog.showModal();
-    this._lockScroll();
-    dialog.addEventListener("close", this._returnScroll);
+    // this._lockScroll();
+    // dialog.addEventListener("close", this._returnScroll);
     dialog.addEventListener("click", this._closeOnBackDropClick);
     this._dialogPolyfill();
   }
