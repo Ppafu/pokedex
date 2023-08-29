@@ -5,29 +5,8 @@ import { infiniteScroll } from "./infiniteScroll";
 import { sideNav } from "./sideNav";
 import { fetchPokemon, renderPokemon } from "./fetchAndRender";
 import { searchPokemon } from "./search";
-
-/////////////////////////////////
-
-const parentElement = document.querySelector(".container");
-
-/////////////////////////////////
-
-const renderSpinner = function () {
-  const markup = `<i class="ph-bold ph-spinner"></i>`;
-  const spinnerElement = document.createElement("div");
-  spinnerElement.setAttribute("id", "spinner");
-  spinnerElement.innerHTML = markup;
-
-  // parentElement.innerHTML = "";
-  parentElement.appendChild(spinnerElement);
-};
-
-const deleteSpinner = function () {
-  const spinnerElement = document.getElementById("spinner");
-  if (spinnerElement) {
-    spinnerElement.parentNode.removeChild(spinnerElement);
-  }
-};
+import { renderError } from "./renderError";
+import { renderSpinner, deleteSpinner } from "./spinner";
 
 //////////////////
 
@@ -63,10 +42,12 @@ const loadPokemon = async function () {
       page++;
     };
     await loadPokemonPage();
-    infiniteScroll(loadPokemonPage);
+    if (infiniteScrollActive) {
+      infiniteScroll(loadPokemonPage);
+    }
   } catch (err) {
     console.error(`${err}💥`);
-    throw err;
+    renderError(err);
   }
 };
 

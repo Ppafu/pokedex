@@ -76,16 +76,12 @@ body {
 }
 
 html {
-  overflow-y: scroll;
-  overflow-x: hidden;
   min-height: 100%;
+  overflow-x: hidden;
+  direction: rtl;
 }
 
 body {
-  display: grid;
-  grid-template-columns: 1fr auto;
-  direction: rtl;
-
   font-size: var(--font-size-1);
   letter-spacing: var(--font-letterspacing-0);
   font-family: "Roboto Mono", var(--font-mono);
@@ -480,4 +476,27 @@ dialog > form > article {
 
 .hidden {
   display: none;
+}
+
+/* ERROR */
+.error {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: var(--size-4);
+}
+.error-msg {
+  font-size: var(--font-size-3);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--size-3);
+}
+.ph-warning {
+  font-size: var(--font-size-6);
+  color: var(--red-10);
+}
+.img-container-error {
+  max-width: 60%;
 }

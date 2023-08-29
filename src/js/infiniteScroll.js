@@ -1,4 +1,6 @@
 export const infiniteScroll = function (fetchedFunction) {
+  let infiniteScrollActive = true;
+
   function throttle(callee, timeout) {
     let timer = null;
 
@@ -31,6 +33,9 @@ export const infiniteScroll = function (fetchedFunction) {
     }
   };
 
-  window.addEventListener("scroll", throttle(checkPosition, 250));
-  window.addEventListener("resize", throttle(checkPosition, 250));
+  // ???
+  if (infiniteScrollActive) {
+    window.addEventListener("scroll", throttle(checkPosition, 250));
+    window.addEventListener("resize", throttle(checkPosition, 250));
+  }
 };
