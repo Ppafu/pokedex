@@ -82,6 +82,7 @@ html {
 }
 
 body {
+  height: 100%;
   font-size: var(--font-size-1);
   letter-spacing: var(--font-letterspacing-0);
   font-family: "Roboto Mono", var(--font-mono);
@@ -194,7 +195,7 @@ label {
   white-space: nowrap;
 }
 .search {
-  width: calc(100% - 2rem); /*???*/
+  width: calc(100% - 2rem);
 
   height: 100%;
   padding: 0 var(--size-2);
@@ -225,6 +226,7 @@ body > main {
   justify-content: center;
 }
 .pokemon-container {
+  position: relative;
   display: flex;
   flex-wrap: wrap;
   margin: auto;
@@ -237,6 +239,10 @@ body > main {
     width: calc(100% - 1rem);
     gap: var(--size-2);
   } */
+}
+#sentinel {
+  position: absolute;
+  bottom: 50vh;
 }
 
 .pokemon-preview {
@@ -450,17 +456,8 @@ dialog > form > article {
   background-color: rgba(255, 255, 255, 0.5);
   border-radius: var(--radius-3);
 }
-.chart-radar {
-}
 
-.chart-radar canvas {
-}
-
-.chart-bar {
-}
-.chart-bar canvas {
-}
-
+/*  */
 #spinner {
   margin: 3rem;
   text-align: center;
@@ -472,10 +469,6 @@ dialog > form > article {
 .ph-spinner {
   color: var(--gray-6);
   font-size: 4rem;
-}
-
-.hidden {
-  display: none;
 }
 
 /* ERROR */
@@ -500,3 +493,9 @@ dialog > form > article {
 .img-container-error {
   max-width: 60%;
 }
+
+/*  */
+/* .hidden {
+  visibility: hidden;
+  opacity: 0;
+} */

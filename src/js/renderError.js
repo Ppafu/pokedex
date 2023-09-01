@@ -1,8 +1,5 @@
-import { infiniteScroll } from "./infiniteScroll";
-
 // export const renderError = function (error) {
 //   const parentElement = document.querySelector(".container");
-
 //   const errorDiv = document.createElement("div");
 //   errorDiv.className = "error";
 
@@ -24,7 +21,6 @@ import { infiniteScroll } from "./infiniteScroll";
 // };
 
 export const renderError = function (error) {
-  //   infiniteScrollActive = false;
   const parentElement = document.querySelector(".pokemon-container");
   const markup = `
     <div class="error">

@@ -1,6 +1,7 @@
 import { fetchPokemon, renderPokemon } from "./fetchAndRender";
 import { renderError } from "./renderError";
 import { renderSpinner, deleteSpinner } from "./spinner";
+import { NUMBER_OF_POKEMON } from "./config";
 
 const parentElement = document.querySelector(".pokemon-container");
 const search = document.querySelector(".search");
@@ -14,13 +15,11 @@ const getQuery = function () {
 
 const fetchPokemonSearch = async function () {
   try {
-    // infiniteScrollActive = false;
-
     const query = getQuery();
     renderSpinner();
 
     const data = await fetchPokemon(query);
-    if (data[0].id <= 151) {
+    if (data[0].id <= NUMBER_OF_POKEMON) {
       renderPokemon(data);
     } else {
       throw new Error("There is no such pokemon");
@@ -33,7 +32,6 @@ const fetchPokemonSearch = async function () {
 
 export const searchPokemon = async function () {
   fetchPokemonSearch();
-
   parentElement.innerHTML = "";
 };
 

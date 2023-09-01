@@ -8,7 +8,7 @@ function toObject(keys, values) {
   return obj;
 }
 
-export const createPokemon = function (data) {
+export const createPokemonObject = function (data) {
   const id = ("000" + data[0].id).slice(-4);
   const name = data[0].name;
   const types = data[0].types;

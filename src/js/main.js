@@ -1,12 +1,13 @@
 "use strict";
 
-import { API_URL, NUMBER_OF_POKEMON, RES_PER_PAGE } from "./config";
-import { infiniteScroll } from "./infiniteScroll";
+import { NUMBER_OF_POKEMON, RES_PER_PAGE } from "./config";
+
 import { sideNav } from "./sideNav";
 import { fetchPokemon, renderPokemon } from "./fetchAndRender";
 import { searchPokemon } from "./search";
 import { renderError } from "./renderError";
 import { renderSpinner, deleteSpinner } from "./spinner";
+import { setupIntersectionObserver } from "./intersectionObserver";
 
 //////////////////
 
@@ -19,9 +20,8 @@ const loadPokemon = async function () {
       const startIndex = (page - 1) * itemsPerPage;
       const endIndex = startIndex + itemsPerPage;
 
-      renderSpinner();
-
       const fetchPromises = [];
+      renderSpinner();
 
       for (
         let id = startIndex + 1;
@@ -37,17 +37,17 @@ const loadPokemon = async function () {
         renderPokemon(data);
       });
 
-      deleteSpinner();
-
       page++;
+      deleteSpinner();
     };
-    await loadPokemonPage();
-    if (infiniteScrollActive) {
-      infiniteScroll(loadPokemonPage);
-    }
-  } catch (err) {
-    console.error(`${err}💥`);
-    renderError(err);
+
+    // Initial call to load the first page of Pokémon
+    loadPokemonPage();
+
+    // Set up Intersection Observer for infinite scrolling
+    setupIntersectionObserver(loadPokemonPage);
+  } catch (error) {
+    renderError(error);
   }
 };
 

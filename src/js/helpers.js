@@ -1,4 +1,5 @@
 import { TIMEOUT_SEC } from "./config.js";
+import { renderError } from "./renderError.js";
 
 const timeout = function (s) {
   return new Promise(function (_, reject) {
@@ -25,7 +26,7 @@ export const AJAX = async function (url, uploadData = undefined) {
 
     if (!res.ok) throw new Error(`${data.message} (${res.status})`);
     return data;
-  } catch (err) {
-    throw err;
+  } catch (error) {
+    renderError(error);
   }
 };
