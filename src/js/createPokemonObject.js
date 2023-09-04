@@ -9,18 +9,23 @@ function toObject(keys, values) {
 }
 
 export const createPokemonObject = function (data) {
-  const id = ("000" + data[0].id).slice(-4);
-  const name = data[0].name;
-  const types = data[0].types;
+  const [pokemonData, descriptionData] = data;
+
+  const id = ("000" + pokemonData.id).slice(-5);
+  const name = pokemonData.name;
+  const types = pokemonData.types;
 
   // MODAL
-  const statName = data[0].stats.map((el) => el.stat.name);
-  const statNum = data[0].stats.map((el) => el.base_stat);
+  const statName = pokemonData.stats.map((el) => el.stat.name);
+  const statNum = pokemonData.stats.map((el) => el.base_stat);
   const stats = toObject(statName, statNum);
 
-  const description = data[1].flavor_text_entries.find(
-    (item) => item.language.name === "en"
-  ).flavor_text;
+  const description =
+    descriptionData && descriptionData.flavor_text_entries.length > 0
+      ? descriptionData.flavor_text_entries.find(
+          (item) => item.language.name === "en"
+        ).flavor_text
+      : "Ecology under research.";
 
   return new Pokemon(id, name, types, stats, description);
 };

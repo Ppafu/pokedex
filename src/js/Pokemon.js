@@ -15,9 +15,9 @@ export default class Pokemon {
   _createElement(markup, el, className) {
     const element = document.createElement(el);
     element.className = className;
-    element.dataset.id = this.id;
     element.innerHTML = markup;
     return element;
+    // element.dataset.id = this.id;
   }
   _nameToUpperCase() {
     return `${this.name[0].toUpperCase() + this.name.slice(1)}`;
@@ -37,7 +37,9 @@ export default class Pokemon {
     let markup = `<div class="id"><p>#${this.id}</p></div>
       <div class="img-container"><img class="img-pokemon" src="https://img.pokemondb.net/artwork/large/${
         this.name
-      }.jpg" ${this.id > 16 ? "loading = lazy" : "loading = eager"} alt="${
+      }.jpg" onerror="this.src = 'https://img.pokemondb.net/artwork/large/${
+      this.name
+    }n.jpg'" ${this.id > 16 ? "loading = lazy" : "loading = eager"} alt="${
       this.name
     }"></div>
       <h2 class="name">${this._nameToUpperCase()}</h2>
@@ -83,10 +85,13 @@ export default class Pokemon {
             <section class="img-container-modal">
             <img class="img-pokemon-modal" src="https://img.pokemondb.net/artwork/large/${
               this.name
-            }.jpg" alt="${this.name}">
+            }.jpg" onerror="this.src = 'https://img.pokemondb.net/artwork/large/${
+      this.name
+    }n.jpg'" alt="${this.name}">
             </section>
   
-    
+         
+            <div class="info-wrapper">
               <section class = "description">
               <p>
               ${this.description.replace("", " ")}
@@ -99,20 +104,12 @@ export default class Pokemon {
   
               <section class="chart chart-bar">
              <canvas id="${this.id}-bar"></canvas></section>
-
+            </div>
           </article>  
         </form>
 
                 `;
     return markup;
-  }
-
-  _lockScroll() {
-    document.body.classList.add("scroll-lock");
-  }
-
-  _returnScroll() {
-    document.body.classList.remove("scroll-lock");
   }
 
   _closeOnBackDropClick({ currentTarget, target }) {
@@ -146,12 +143,9 @@ export default class Pokemon {
 
   render() {
     const markup = this._generateMarkup();
+
     // Create a new DOM element from the markup and add the pokemon-preview class directly
-    const pokemonElement = this._createElement(
-      markup,
-      "li",
-      "pokemon-preview hidden"
-    );
+    const pokemonElement = this._createElement(markup, "li", "pokemon-preview");
 
     // Append the new element to the parent element
     this._parentElement.appendChild(pokemonElement);

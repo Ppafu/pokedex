@@ -12,10 +12,11 @@ const deleteHiddenClass = function () {
 
 export const fetchPokemon = async function (value) {
   try {
-    const pokemonData = await AJAX(`${API_URL}/${value}`);
-
+    const pokemonData = await AJAX(`${API_URL}pokemon/${value}`);
+    // console.log(pokemonData);
     if (pokemonData) {
-      const pokemonDescriptionData = await AJAX(`${API_URL}-species/${value}`);
+      const pokemonDescriptionData = await AJAX(pokemonData.species.url);
+
       const data = [pokemonData, pokemonDescriptionData];
       return data;
     } else {
@@ -30,5 +31,4 @@ export const fetchPokemon = async function (value) {
 export const renderPokemon = function (data) {
   const pokemon = createPokemonObject(data);
   pokemon.render();
-  // deleteHiddenClass();
 };

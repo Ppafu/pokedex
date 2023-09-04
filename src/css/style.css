@@ -108,6 +108,11 @@ li {
   transition: outline-color 0.3s;
 }
 
+#sentinel {
+  position: absolute;
+  bottom: 50vh;
+}
+
 /* HEADER */
 
 .header {
@@ -162,6 +167,8 @@ body > aside {
 
   overflow-x: hidden;
   transition: 0.5s;
+
+  white-space: nowrap;
 }
 
 .btn--close {
@@ -169,6 +176,7 @@ body > aside {
   align-self: flex-start;
 }
 
+/* Search */
 .search-wrapper {
   display: flex;
   flex-direction: column;
@@ -192,7 +200,6 @@ body > aside {
 }
 
 label {
-  white-space: nowrap;
 }
 .search {
   width: calc(100% - 2rem);
@@ -212,6 +219,34 @@ input:focus::placeholder {
 }
 .btn-search {
   /* position: fixed; */
+}
+
+/* Filter */
+.filter-wrapper {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  gap: var(--size-2);
+  padding: 0 var(--size-3);
+}
+
+.filter-container {
+  display: grid;
+  grid-template-columns: repeat(3, auto);
+  gap: var(--size-4);
+  padding: var(--size-4);
+
+  justify-content: center;
+  width: 100%;
+
+  border-radius: var(--radius-3);
+  background-color: rgba(255, 255, 255, 0.5);
+}
+
+.type.filter {
+}
+.type.filter:hover {
+  cursor: pointer;
 }
 
 /* MAIN */
@@ -239,10 +274,6 @@ body > main {
     width: calc(100% - 1rem);
     gap: var(--size-2);
   } */
-}
-#sentinel {
-  position: absolute;
-  bottom: 50vh;
 }
 
 .pokemon-preview {
@@ -330,6 +361,7 @@ body > main {
   margin: auto;
 
   width: min(100% - 2rem, 60rem);
+  height: 35rem;
   border-radius: var(--radius-3);
 
   border: none;
@@ -371,7 +403,6 @@ dialog + .backdrop {
 }
 
 dialog > form > header {
-  /* grid-column-start: span 2; */
   display: flex;
   gap: var(--size-2);
   justify-content: space-between;
@@ -411,17 +442,16 @@ dialog > form > header {
 }
 
 dialog > form > article {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  grid-template-rows: auto 1fr auto;
+  width: 100%;
+  display: flex;
+
   gap: var(--size-2);
 }
 
 .img-container-modal {
-  grid-row-start: span 3;
   display: flex;
 
-  width: 100%;
+  width: 50%;
   aspect-ratio: 1;
 
   padding: var(--size-3);
@@ -434,11 +464,13 @@ dialog > form > article {
   height: 100%;
   object-fit: contain;
 }
-.stats-modal {
+
+.info-wrapper {
   display: flex;
   flex-direction: column;
   gap: var(--size-2);
 }
+
 .description {
   display: flex;
   align-items: center;
@@ -447,6 +479,7 @@ dialog > form > article {
   word-wrap: break-word;
   padding-block: var(--size-1);
   padding-inline: 0.7rem;
+
   background-color: rgba(255, 255, 255, 0.5);
   border-radius: var(--radius-3);
 }
@@ -455,6 +488,12 @@ dialog > form > article {
   padding: var(--size-2);
   background-color: rgba(255, 255, 255, 0.5);
   border-radius: var(--radius-3);
+}
+.chart-radar {
+  height: 100%;
+}
+.chart-radar canvas {
+  max-height: 15rem;
 }
 
 /*  */

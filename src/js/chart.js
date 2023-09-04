@@ -17,7 +17,7 @@ export const createRadarChart = async function (data, id, label) {
       events: [],
       responsive: true,
       maintainAspectRatio: false,
-      aspectRatio: 2,
+      aspectRatio: 1.4,
       plugins: {
         legend: {
           display: false,
@@ -80,17 +80,16 @@ export const createBarChart = async function (data, id, label) {
             "rgba(54, 162, 235)",
             "rgba(245, 120, 245)",
           ],
-          barThickness: 13,
+          barThickness: 12,
           borderRadius: 99,
           borderSkipped: false,
         },
       ],
     },
     options: {
-      aspectRatio: 3.2,
+      aspectRatio: 3.3,
       responsive: true,
       indexAxis: "y",
-      barPercentage: 0.8,
       events: [],
       plugins: {
         legend: {
@@ -107,7 +106,7 @@ export const createBarChart = async function (data, id, label) {
         },
         y: {
           ticks: {
-            font: { size: 16, family: "Roboto Mono" },
+            font: { size: 15, family: "Roboto Mono" },
           },
           grid: {
             display: false,
