@@ -1,5 +1,4 @@
 "use strict";
-
 import { loadPokemon } from "./loadPokemon";
 import { sideNav } from "./sideNav";
 import { searchPokemon } from "./search";

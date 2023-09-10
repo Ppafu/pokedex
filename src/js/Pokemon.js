@@ -12,6 +12,35 @@ export default class Pokemon {
     this.description = description;
   }
 
+  _onError() {
+    const markup = `"this.src = './src/img/MissingNo.svg'"`;
+    return markup;
+
+    // let markup;
+
+    // if (this.name.includes("alola")) {
+    //   markup = `"this.src = 'https://img.pokemondb.net/artwork/large/${this.name}n.jpg'"`;
+    //   return markup;
+    // }
+    // if (this.name.includes("gmax")) {
+    //   markup = `"this.src = 'https://img.pokemondb.net/artwork/large/${this.name.slice(
+    //     0,
+    //     -4
+    //   )}gigantamax.jpg'"`;
+    //   return markup;
+    // }
+    // if (this.name.includes("galar")) {
+    //   markup = `"this.src = 'https://img.pokemondb.net/artwork/large/${this.name}ian.jpg'"`;
+    //   return markup;
+    // }
+    // if (this.name.includes("hisui")) {
+    //   markup = `"this.src = 'https://img.pokemondb.net/artwork/large/${this.name}an.jpg'"`;
+    //   return markup;
+    // } else {
+    //   markup = `"this.src = './src/img/MissingNo.svg'"`;
+    //   return markup;
+    // }
+  }
   _createElement(markup, el, className) {
     const element = document.createElement(el);
     element.className = className;
@@ -20,7 +49,9 @@ export default class Pokemon {
     // element.dataset.id = this.id;
   }
   _nameToUpperCase() {
-    return `${this.name[0].toUpperCase() + this.name.slice(1)}`;
+    return `${
+      this.name[0].toUpperCase() + this.name.slice(1).replace("-", " ")
+    }`;
   }
 
   _generateTypes() {
@@ -37,11 +68,9 @@ export default class Pokemon {
     let markup = `<div class="id"><p>#${this.id}</p></div>
       <div class="img-container"><img class="img-pokemon" src="https://img.pokemondb.net/artwork/large/${
         this.name
-      }.jpg" onerror="this.src = 'https://img.pokemondb.net/artwork/large/${
-      this.name
-    }n.jpg'" ${this.id > 16 ? "loading = lazy" : "loading = eager"} alt="${
-      this.name
-    }"></div>
+      }.jpg" onerror = ${this._onError()} ${
+      this.id > 16 ? "loading = lazy" : "loading = eager"
+    } alt="${this.name}"></div>
       <h2 class="name">${this._nameToUpperCase()}</h2>
   
       <div class="type-container">
@@ -85,9 +114,7 @@ export default class Pokemon {
             <section class="img-container-modal">
             <img class="img-pokemon-modal" src="https://img.pokemondb.net/artwork/large/${
               this.name
-            }.jpg" onerror="this.src = 'https://img.pokemondb.net/artwork/large/${
-      this.name
-    }n.jpg'" alt="${this.name}">
+            }.jpg" onerror = ${this._onError()} alt="${this.name}">
             </section>
   
          

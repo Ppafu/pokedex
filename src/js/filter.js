@@ -1,14 +1,10 @@
 import { Type } from "./Type";
 import { API_URL } from "./config";
 import { AJAX } from "./helpers";
-import { fetchPokemon, renderPokemon } from "./fetchAndRender";
 import { loadPokemon } from "./loadPokemon";
 import { renderError } from "./renderError";
 
 // fetch types -> render types -> click type -> got an array of pokemons -> render them
-
-// const parentElement = document.querySelector(".pokemon-container");
-// parentElement.innerHTML = "";
 
 // Get types
 const fetchTypes = async function () {
@@ -19,8 +15,6 @@ const fetchTypes = async function () {
 
   return typeNames;
 };
-
-// Getting an array of Pokemon of a specific type
 
 // Adding types to the sidenav
 export const appendTypeElements = async function () {
@@ -38,22 +32,62 @@ export const appendTypeElements = async function () {
   });
 };
 
+// Getting an array of Pokemon of a specific type
 const fetchPokemonsByType = async function (type) {
   const typeData = await AJAX(`${API_URL}type/${type}`);
-  const arrayPokemonsOfType = typeData.pokemon.map((el) => el.pokemon.name);
-  return arrayPokemonsOfType;
+  const pokemonData = typeData.pokemon;
+
+  //SORTING
+  const sortedPokemonIds = pokemonData
+    .map((el) => {
+      const urlParts = el.pokemon.url.split("/");
+      return parseInt(urlParts[urlParts.length - 2]);
+    })
+    .sort((a, b) => a - b);
+
+  return sortedPokemonIds;
 };
 
 export const loadFilteredPokemons = async function (type) {
   try {
-    const data = await fetchPokemonsByType(type);
-    console.log(data);
-    // loadPokemon(data);
+    if (type) {
+      const arrayOfPokemons = await fetchPokemonsByType(type);
+      await loadPokemon(arrayOfPokemons);
+    } else {
+      return;
+    }
   } catch (error) {
     console.error(error);
     renderError(error);
   }
 };
+
+// for (const name of arrayPokemonsOfType) {
+//   await loadPokemon(name);
+// }
+
+// export const loadFilteredPokemons = async function (type) {
+//   try {
+//     const parentElement = document.querySelector(".pokemon-container");
+//     parentElement.innerHTML = '<div id="sentinel"></div>';
+//     if (type) {
+//       const data = await fetchPokemonsByType(type);
+
+//       // Fetch and render each Pokémon in the array
+//       for (const pokemonName of data) {
+//         const pokemonData = await fetchPokemon(pokemonName);
+//         renderPokemon(pokemonData);
+//       }
+
+//       console.log(data);
+//     } else {
+//       loadPokemon();
+//     }
+//   } catch (error) {
+//     console.error(error);
+//     renderError(error);
+//   }
+// };
 
 // Getting an array of Pokemon of a specific type
 // const fetchPokemonsByType = async function (type) {

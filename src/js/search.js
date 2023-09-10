@@ -1,7 +1,6 @@
 import { fetchPokemon, renderPokemon } from "./fetchAndRender";
 import { renderError } from "./renderError";
 import { renderSpinner, deleteSpinner } from "./spinner";
-import { NUMBER_OF_POKEMON } from "./config";
 
 const parentElement = document.querySelector(".pokemon-container");
 const search = document.querySelector(".search");

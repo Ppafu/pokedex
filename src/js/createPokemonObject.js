@@ -10,6 +10,7 @@ function toObject(keys, values) {
 
 export const createPokemonObject = function (data) {
   const [pokemonData, descriptionData] = data;
+  // console.log(data);
 
   const id = ("000" + pokemonData.id).slice(-5);
   const name = pokemonData.name;

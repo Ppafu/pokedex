@@ -13,11 +13,12 @@ const deleteHiddenClass = function () {
 export const fetchPokemon = async function (value) {
   try {
     const pokemonData = await AJAX(`${API_URL}pokemon/${value}`);
-    // console.log(pokemonData);
+
     if (pokemonData) {
       const pokemonDescriptionData = await AJAX(pokemonData.species.url);
 
       const data = [pokemonData, pokemonDescriptionData];
+
       return data;
     } else {
       throw new Error("There is no such pokemon");
