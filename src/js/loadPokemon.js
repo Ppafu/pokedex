@@ -6,7 +6,7 @@ import { setupIntersectionObserver } from "./intersectionObserver";
 
 let page = 1;
 
-const loadPokemonPage = async function (arrayOfPokemons) {
+const loadPokemonsInRange = async function (arrayOfPokemons) {
   const startIndex = (page - 1) * RES_PER_PAGE;
   const endIndex = startIndex + RES_PER_PAGE;
 
@@ -15,15 +15,12 @@ const loadPokemonPage = async function (arrayOfPokemons) {
 
   // Determine the range of Pokémon to load
   try {
-    if (arrayOfPokemons) {
+    if (!arrayOfPokemons) {
+      return;
+    } else {
       arrayOfPokemons = arrayOfPokemons.slice(startIndex, endIndex);
       // Fetch Pokémon based on the provided value (an array of IDs)
       for (const id of arrayOfPokemons) {
-        fetchPromises.push(fetchPokemon(id));
-      }
-    } else {
-      // Fetch Pokémon sequentially based on ID
-      for (let id = startIndex + 1; id <= endIndex; id++) {
         fetchPromises.push(fetchPokemon(id));
       }
     }
@@ -49,13 +46,12 @@ export const loadPokemon = async function (arrayOfPokemons) {
     parentElement.innerHTML = '<div id="sentinel"></div>';
 
     if (!arrayOfPokemons) {
-      loadPokemonPage(null);
+      return;
     } else {
-      loadPokemonPage(arrayOfPokemons);
+      loadPokemonsInRange(arrayOfPokemons);
     }
-
     // Set up Intersection Observer for infinite scrolling
-    setupIntersectionObserver(() => loadPokemonPage(arrayOfPokemons));
+    setupIntersectionObserver(() => loadPokemonsInRange(arrayOfPokemons));
   } catch (error) {
     console.error(error);
     renderError(error);

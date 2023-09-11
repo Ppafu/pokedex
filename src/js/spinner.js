@@ -1,6 +1,8 @@
 const parentElement = document.querySelector(".container");
 
 export const renderSpinner = function () {
+  if (document.getElementById("spinner")) return;
+
   const markup = `<i class="ph-bold ph-spinner"></i>`;
   const spinnerElement = document.createElement("div");
 

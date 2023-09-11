@@ -1,8 +1,8 @@
 import { Type } from "./Type";
 import { API_URL } from "./config";
 import { AJAX } from "./helpers";
-import { loadPokemon } from "./loadPokemon";
 import { renderError } from "./renderError";
+import { pokemonOrder } from "./sort";
 
 // fetch types -> render types -> click type -> got an array of pokemons -> render them
 
@@ -38,12 +38,11 @@ const fetchPokemonsByType = async function (type) {
   const pokemonData = typeData.pokemon;
 
   //SORTING
-  const sortedPokemonIds = pokemonData
-    .map((el) => {
-      const urlParts = el.pokemon.url.split("/");
-      return parseInt(urlParts[urlParts.length - 2]);
-    })
-    .sort((a, b) => a - b);
+  const sortedPokemonIds = pokemonData.map((el) => {
+    const urlParts = el.pokemon.url.split("/");
+    return parseInt(urlParts[urlParts.length - 2]);
+  });
+  // .sort((a, b) => b - a);
 
   return sortedPokemonIds;
 };
@@ -52,7 +51,7 @@ export const loadFilteredPokemons = async function (type) {
   try {
     if (type) {
       const arrayOfPokemons = await fetchPokemonsByType(type);
-      await loadPokemon(arrayOfPokemons);
+      pokemonOrder(arrayOfPokemons);
     } else {
       return;
     }
