@@ -8,7 +8,9 @@
 
     <script type="module" src="src/js/main.js"></script>
 
-    <script src="https://unpkg.com/@phosphor-icons/web"></script>
+    <script
+      src="https://kit.fontawesome.com/b1fe70e905.js"
+      crossorigin="anonymous"></script>
 
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
@@ -26,7 +28,7 @@
     <aside>
       <nav class="sidenav" id="sidenav">
         <button class="btn btn--close">
-          <i class="ph-bold ph-x"></i>
+          <i class="fa-solid fa-xmark"></i>
         </button>
 
         <!-- Search -->
@@ -41,7 +43,7 @@
               maxlength="500" />
 
             <button class="btn btn--search">
-              <i class="ph-bold ph-magnifying-glass"></i>
+              <i class="fa-solid fa-magnifying-glass"></i>
             </button>
           </div>
         </div>
@@ -49,11 +51,11 @@
         <div class="wrapper">
           <h4>Sort:</h4>
           <div class="sort-container">
-            <button class="btn btn--sort">
-              <i class="ph-bold ph-sort-ascending"></i>
+            <button class="btn btn--sort ascending">
+              <i class="fa-solid fa-arrow-up-short-wide"></i>
             </button>
-            <button class="btn btn--sort">
-              <i class="ph-bold ph-sort-descending"></i>
+            <button class="btn btn--sort descending">
+              <i class="fa-solid fa-arrow-down-wide-short"></i>
             </button>
           </div>
         </div>
@@ -67,11 +69,16 @@
 
     <main>
       <button class="btn btn--list">
-        <i class="ph-bold ph-list"></i>
+        <i class="fa-solid fa-bars"></i>
       </button>
+
+      <button class="btn btn--up">
+        <i class="fa-solid fa-circle-arrow-up"></i>
+      </button>
+
       <header class="header">
         <div class="logo">
-          <img src="./src/img/pokedex.svg" alt="pokedex" />
+          <a href="#"> <img src="./src/img/pokedex.svg" alt="pokedex" /></a>
         </div>
       </header>
       <div class="container">

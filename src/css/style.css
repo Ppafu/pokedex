@@ -105,21 +105,35 @@ li {
   outline: none;
   font-size: var(--font-size-5);
   color: var(--gray-6);
+
   transition: outline-color 0.3s;
+}
+
+.btn:hover {
+  color: rgb(115, 115, 125);
 }
 
 .btn--list {
   position: fixed;
   right: var(--size-6);
-  /* position: absolute; */
 
-  font-size: 2.5rem;
+  font-size: var(--font-size-6);
+  z-index: 1;
+}
+.btn--up {
+  position: fixed;
+  right: var(--size-6);
+  bottom: var(--size-6);
+  font-size: var(--font-size-8);
   z-index: 1;
 }
 
 #sentinel {
   position: absolute;
   bottom: 50vh;
+}
+.btn--up:hover {
+  color: var(--blue-7);
 }
 
 /* HEADER */
@@ -156,7 +170,7 @@ body > aside {
   align-items: center;
   flex-direction: column;
   padding-top: var(--size-3);
-  gap: var(--size-4);
+  gap: var(--size-5);
 
   top: 0;
   right: 0;
@@ -229,6 +243,7 @@ input:focus::placeholder {
 
 .sort-container {
   display: flex;
+  column-gap: var(--size-3);
 }
 
 /* Filter */
@@ -287,7 +302,8 @@ body > main {
   flex-direction: column;
   align-items: center;
 
-  gap: var(--size-1);
+  justify-content: space-between;
+  /* gap: var(--size-1); */
 
   border-radius: var(--radius-3);
   background-color: #fff;
@@ -297,6 +313,7 @@ body > main {
 
   overflow: hidden;
   box-shadow: var(--shadow-3);
+  cursor: pointer;
 
   transition: all 0.25s;
 
@@ -311,7 +328,6 @@ body > main {
 }
 
 .pokemon-preview:hover {
-  cursor: pointer;
   box-shadow: var(--shadow-4);
   transform: translateZ(0) scale(1.069);
 }
@@ -336,16 +352,21 @@ body > main {
   aspect-ratio: 1;
   object-fit: contain;
 }
-.name {
+.name-preview {
   font-size: var(--font-size-2);
-  margin-bottom: var(--size-1);
+  /* margin: var(--size-1); */
   font-weight: 600;
 }
-
+.long {
+  font-size: 1rem;
+  line-height: 0.93rem;
+  text-align: center;
+}
 .type-container {
   justify-self: flex-end;
   display: flex;
-  gap: 0.5rem;
+  column-gap: 0.5rem;
+  margin-bottom: 0.69rem;
 }
 
 .type {
@@ -440,11 +461,18 @@ dialog > form > header {
   padding: 0;
   font-size: var(--font-size-3);
 }
+.info-modal .type-container {
+  margin-bottom: 0;
+}
 
 .btn--close-modal {
-  padding: 0.65rem;
+  min-height: 100%;
+  aspect-ratio: 1;
+  font-size: var(--font-size-6);
   background-color: rgba(255, 255, 255, 0.5);
   border-radius: var(--radius-3);
+
+  color: var(--gray-5);
 }
 
 dialog > form > article {

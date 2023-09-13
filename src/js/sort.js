@@ -1,7 +1,7 @@
 import { loadPokemon } from "./loadPokemon";
 
-const ascendingOrderBtn = document.querySelector(".ph-sort-ascending");
-const descendingOrderBtn = document.querySelector(".ph-sort-descending");
+const ascendingOrderBtn = document.querySelector(".ascending");
+const descendingOrderBtn = document.querySelector(".descending");
 let sortedArray = [];
 
 export const pokemonOrder = function (arrayOfPokemons, order = "ascending") {

@@ -37,12 +37,10 @@ const fetchPokemonsByType = async function (type) {
   const typeData = await AJAX(`${API_URL}type/${type}`);
   const pokemonData = typeData.pokemon;
 
-  //SORTING
   const sortedPokemonIds = pokemonData.map((el) => {
     const urlParts = el.pokemon.url.split("/");
     return parseInt(urlParts[urlParts.length - 2]);
   });
-  // .sort((a, b) => b - a);
 
   return sortedPokemonIds;
 };

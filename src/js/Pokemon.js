@@ -12,34 +12,50 @@ export default class Pokemon {
     this.description = description;
   }
 
+  _imgSrc() {
+    const url = "https://img.pokemondb.net/artwork/large/";
+    let markup;
+
+    if (this.name.includes("alola-cap")) {
+      markup = `${url}${this.name}.jpg`;
+      return markup;
+    }
+    if (this.name.includes("alola")) {
+      markup = `${url}${this.name}n.jpg`;
+      return markup;
+    }
+    if (this.name.includes("partner")) {
+      markup = `${url}pikachu-lets-go.jpg`;
+      return markup;
+    }
+    if (this.name.includes("gmax")) {
+      markup = `${url}${this.name.slice(0, -4)}gigantamax.jpg`;
+      return markup;
+    }
+    if (this.name.includes("galar")) {
+      markup = `${url}${this.name}ian.jpg`;
+      return markup;
+    }
+    if (this.name.includes("hisui")) {
+      markup = `${url}${this.name}an.jpg`;
+      return markup;
+    }
+    if (
+      this.name.includes("Calyrex" && "ice") ||
+      this.name.includes("Calyrex" && "shadow")
+    ) {
+      markup = `${url}${this.name}-rider.jpg`;
+      return markup;
+    } else {
+      markup = `${url}${this.name}.jpg`;
+      return markup;
+    }
+  }
+
   _onError() {
-    const markup = `"this.src = './src/img/MissingNo.svg'"`;
+    let markup;
+    markup = `"this.onerror=null; this.src = './src/img/MissingNo.svg'"`;
     return markup;
-
-    // let markup;
-
-    // if (this.name.includes("alola")) {
-    //   markup = `"this.src = 'https://img.pokemondb.net/artwork/large/${this.name}n.jpg'"`;
-    //   return markup;
-    // }
-    // if (this.name.includes("gmax")) {
-    //   markup = `"this.src = 'https://img.pokemondb.net/artwork/large/${this.name.slice(
-    //     0,
-    //     -4
-    //   )}gigantamax.jpg'"`;
-    //   return markup;
-    // }
-    // if (this.name.includes("galar")) {
-    //   markup = `"this.src = 'https://img.pokemondb.net/artwork/large/${this.name}ian.jpg'"`;
-    //   return markup;
-    // }
-    // if (this.name.includes("hisui")) {
-    //   markup = `"this.src = 'https://img.pokemondb.net/artwork/large/${this.name}an.jpg'"`;
-    //   return markup;
-    // } else {
-    //   markup = `"this.src = './src/img/MissingNo.svg'"`;
-    //   return markup;
-    // }
   }
   _createElement(markup, el, className) {
     const element = document.createElement(el);
@@ -52,6 +68,13 @@ export default class Pokemon {
     return `${
       this.name[0].toUpperCase() + this.name.slice(1).replace("-", " ")
     }`;
+  }
+  _nameClass() {
+    if (this.name.length >= 21) {
+      return `"name-preview long"`;
+    } else {
+      return "name-preview";
+    }
   }
 
   _generateTypes() {
@@ -66,12 +89,10 @@ export default class Pokemon {
 
   _generateMarkup() {
     let markup = `<div class="id"><p>#${this.id}</p></div>
-      <div class="img-container"><img class="img-pokemon" src="https://img.pokemondb.net/artwork/large/${
-        this.name
-      }.jpg" onerror = ${this._onError()} ${
+      <div class="img-container"><img class="img-pokemon" src=${this._imgSrc()} onerror =${this._onError()} ${
       this.id > 16 ? "loading = lazy" : "loading = eager"
     } alt="${this.name}"></div>
-      <h2 class="name">${this._nameToUpperCase()}</h2>
+      <h2 class=${this._nameClass()}>${this._nameToUpperCase()}</h2>
   
       <div class="type-container">
       ${this._generateTypes()}
@@ -105,16 +126,16 @@ export default class Pokemon {
                 </section>
 
                <button class="btn btn--close-modal">
-               <i class="ph-bold ph-x"></i>
+               <i class="fa-solid fa-xmark"></i>
                </button>
             </header>
   
 
           <article>
             <section class="img-container-modal">
-            <img class="img-pokemon-modal" src="https://img.pokemondb.net/artwork/large/${
-              this.name
-            }.jpg" onerror = ${this._onError()} alt="${this.name}">
+            <img class="img-pokemon-modal" src=${this._imgSrc()} onerror =${this._onError()} alt="${
+      this.name
+    }">
             </section>
   
          
