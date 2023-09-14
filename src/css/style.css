@@ -123,9 +123,13 @@ li {
 .btn--up {
   position: fixed;
   right: var(--size-6);
-  bottom: var(--size-6);
+  /* bottom: var(--size-5); */
+  bottom: 0;
   font-size: var(--font-size-8);
   z-index: 1;
+  opacity: 0;
+
+  transition: all 0.3s ease;
 }
 
 #sentinel {
@@ -152,7 +156,7 @@ li {
   display: flex;
   justify-content: center;
   align-items: center;
-  /* margin-left: 2.5rem; */
+  cursor: pointer;
 }
 
 .logo img {
@@ -533,14 +537,14 @@ dialog > form > article {
 
 /*  */
 #spinner {
-  margin: 3rem;
+  margin: var(--size-8);
   text-align: center;
   letter-spacing: normal;
   line-height: normal;
-  animation: spin 2s linear infinite;
+  animation: spin 1s linear infinite;
 }
 
-.ph-spinner {
+.spinner {
   color: var(--gray-6);
   font-size: 4rem;
 }

@@ -3,7 +3,7 @@ const parentElement = document.querySelector(".container");
 export const renderSpinner = function () {
   if (document.getElementById("spinner")) return;
 
-  const markup = `<i class="ph-bold ph-spinner"></i>`;
+  const markup = `<i class="spinner fa-solid fa-circle-notch"></i>`;
   const spinnerElement = document.createElement("div");
 
   spinnerElement.setAttribute("id", "spinner");

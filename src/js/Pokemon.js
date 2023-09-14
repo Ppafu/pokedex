@@ -16,8 +16,24 @@ export default class Pokemon {
     const url = "https://img.pokemondb.net/artwork/large/";
     let markup;
 
+    if (this.name.includes("pumpkaboo") || this.name.includes("gourgeist")) {
+      markup = `${url}${this.name.slice(0, -6)}.jpg`;
+      return markup;
+    }
+    if (this.name.includes("regice")) {
+      markup = `${url}regice.jpg`;
+      return markup;
+    }
     if (this.name.includes("alola-cap")) {
       markup = `${url}${this.name}.jpg`;
+      return markup;
+    }
+    if (this.name.includes("mimikyu" && "disguised")) {
+      markup = `${url}mimikyu.jpg`;
+      return markup;
+    }
+    if (this.name.includes("mimikyu" && "busted")) {
+      markup = `https://img.pokemondb.net/artwork/vector/mimikyu-busted.png`;
       return markup;
     }
     if (this.name.includes("alola")) {
