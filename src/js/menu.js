@@ -1,19 +1,22 @@
-import Pokemon from "./Pokemon";
-
-export const sideNav = function () {
+export const menu = function () {
   const btnMenu = document.querySelector(".btn--list");
   const btnClose = document.querySelector(".btn--close");
-  const sideNav = document.getElementById("sidenav");
+  const menu = document.getElementById("menu");
   const dialog = document.querySelector("dialog");
+  const body = document.querySelector("html");
 
   btnMenu.addEventListener("click", () => {
-    sideNav.style.visibility = "visible";
-    sideNav.style.width = "25rem";
+    menu.style.visibility = "visible";
+    menu.style.width = `${window.innerWidth < "768" ? "100%" : "25rem"}`;
+    if (menu.style.width == "100%") {
+      body.classList.add("hidden");
+    }
   });
 
   btnClose.addEventListener("click", () => {
-    sideNav.style.visibility = "hidden";
-    sideNav.style.width = "0px";
+    menu.style.visibility = "hidden";
+    menu.style.width = "0";
+    body.classList.remove("hidden");
   });
 
   //Closing modal without closing sidenav
@@ -22,8 +25,7 @@ export const sideNav = function () {
       if (dialog.open) {
         dialog.close();
       } else {
-        sideNav.style.visibility = "hidden";
-        sideNav.style.width = "0px";
+        menu.style.visibility = "hidden";
       }
     }
   });

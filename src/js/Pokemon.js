@@ -86,7 +86,7 @@ export default class Pokemon {
     }`;
   }
   _nameClass() {
-    if (this.name.length >= 21) {
+    if (this.name.length >= 17) {
       return `"name-preview long"`;
     } else {
       return "name-preview";

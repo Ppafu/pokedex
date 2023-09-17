@@ -1,8 +1,7 @@
 "use strict";
-import { loadPokemon } from "./loadPokemon";
-import { sideNav } from "./sideNav";
-import { searchPokemon } from "./search";
-import { appendTypeElements, loadFilteredPokemons } from "./filter";
+import { menu } from "./menu";
+import { triggerSearch } from "./search";
+import { appendTypeElements } from "./filter";
 import { NUMBER_OF_POKEMONS } from "./config";
 import { pokemonOrder } from "./sort";
 import { arrayRange } from "./helpers";
@@ -18,9 +17,12 @@ const initialLoad = function () {
 };
 //////////////////
 
+//////////////////
+
 const init = function () {
   initialLoad();
-  sideNav();
+  menu();
+  triggerSearch();
   appendTypeElements();
   scrollUpBtn();
   reloadOnLogo();

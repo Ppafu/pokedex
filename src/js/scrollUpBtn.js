@@ -1,7 +1,6 @@
 import { setupIntersectionObserver } from "./intersectionObserver";
 
 const btnUp = document.querySelector(".btn--up");
-const rootElement = document.documentElement;
 
 const btnVisibility = function () {
   if (window.scrollY > 500) {

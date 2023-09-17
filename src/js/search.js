@@ -4,6 +4,7 @@ import { renderSpinner, deleteSpinner } from "./spinner";
 
 const parentElement = document.querySelector(".pokemon-container");
 const search = document.querySelector(".search");
+const searchBtn = document.querySelector(".btn--search");
 
 const getQuery = function () {
   const query = search.value.toLowerCase().trim();
@@ -18,26 +19,28 @@ const fetchPokemonSearch = async function () {
     renderSpinner();
 
     const data = await fetchPokemon(query);
-
-    renderPokemon(data);
-    // if (data[0].id <= NUMBER_OF_POKEMON) {
-    // } else {
-    //   throw new Error("There is no such pokemon");
-    // }
+    if (data) {
+      renderPokemon(data);
+    } else {
+      throw new Error("There is no such pokemon");
+    }
   } catch (error) {
     renderError(error);
   }
   deleteSpinner();
 };
 
-search.addEventListener("keydown", function (event) {
-  if (event.key === "Enter") {
-    event.preventDefault();
-    searchPokemon();
-  }
-});
-
-export const searchPokemon = async function () {
+const searchPokemon = async function () {
   fetchPokemonSearch();
   parentElement.innerHTML = "";
+};
+
+export const triggerSearch = function () {
+  search.addEventListener("keydown", function (event) {
+    if (event.key === "Enter") {
+      event.preventDefault();
+      searchPokemon();
+    }
+  });
+  searchBtn.addEventListener("click", searchPokemon);
 };
