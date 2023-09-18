@@ -132,7 +132,7 @@ export default class Pokemon {
 
     let markup = `
             <form class="dialog-wrapper" method="dialog">
-            <header>
+       <header>
             <section class="info-modal">
                 <div class="id id-modal"><p>#${this.id}</p></div>
                 <h2 class="name name-modal">${this._nameToUpperCase()}</h2>
@@ -144,17 +144,16 @@ export default class Pokemon {
                <button class="btn btn--close-modal">
                <i class="fa-solid fa-xmark"></i>
                </button>
-            </header>
+               </header>
   
 
-          <article>
+               <article>
             <section class="img-container-modal">
             <img class="img-pokemon-modal" src=${this._imgSrc()} onerror =${this._onError()} alt="${
       this.name
     }">
             </section>
   
-         
             <div class="info-wrapper">
               <section class = "description">
               <p>
@@ -162,14 +161,20 @@ export default class Pokemon {
               </p>
               </section>
 
-              <section class="chart chart-radar"><canvas id="${
-                this.id
-              }-radar"></canvas></section>
+              <section class="chart chart-radar">
+              <div class="chart-wrapper">
+              <canvas id="${this.id}-radar">
+              </canvas>
+              </div>
+              </section>
   
               <section class="chart chart-bar">
-             <canvas id="${this.id}-bar"></canvas></section>
+              <div class="chart-wrapper">
+             <canvas id="${this.id}-bar"></canvas></div>
+             </section>
             </div>
-          </article>  
+          </article>
+        
         </form>
 
                 `;

@@ -17,7 +17,17 @@ export const createPokemonObject = function (data) {
   const types = pokemonData.types;
 
   // MODAL
-  const statName = pokemonData.stats.map((el) => el.stat.name);
+  const statName = pokemonData.stats.map((el) => {
+    if (el.stat.name === "special-defense") {
+      return "sp.def.";
+    } else if (el.stat.name === "special-attack") {
+      return "sp.att.";
+    } else {
+      return el.stat.name;
+    }
+  });
+
+  console.log(statName);
   const statNum = pokemonData.stats.map((el) => el.base_stat);
   const stats = toObject(statName, statNum);
 
