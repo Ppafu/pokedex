@@ -17,9 +17,3 @@ export class Type extends Pokemon {
     this._parentElement.appendChild(typeElement);
   }
 }
-
-// this.handler = handler;
-
-// typeElement.addEventListener("click", () => {
-//   this.handler(this.name);
-// });

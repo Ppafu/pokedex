@@ -54,71 +54,8 @@ export const loadFilteredPokemons = async function (type) {
       return;
     }
   } catch (error) {
-    console.error(error);
+    console.error(`loadFilteredPokemons: ${error}`);
     renderError(error);
   }
 };
 
-// for (const name of arrayPokemonsOfType) {
-//   await loadPokemon(name);
-// }
-
-// export const loadFilteredPokemons = async function (type) {
-//   try {
-//     const parentElement = document.querySelector(".pokemon-container");
-//     parentElement.innerHTML = '<div id="sentinel"></div>';
-//     if (type) {
-//       const data = await fetchPokemonsByType(type);
-
-//       // Fetch and render each Pokémon in the array
-//       for (const pokemonName of data) {
-//         const pokemonData = await fetchPokemon(pokemonName);
-//         renderPokemon(pokemonData);
-//       }
-
-//       console.log(data);
-//     } else {
-//       loadPokemon();
-//     }
-//   } catch (error) {
-//     console.error(error);
-//     renderError(error);
-//   }
-// };
-
-// Getting an array of Pokemon of a specific type
-// const fetchPokemonsByType = async function (type) {
-//   const typeData = await AJAX(`${API_URL}type/${type}`);
-//   const arrayPokemonsOfType = typeData.pokemon.map((el) => el.pokemon.name);
-
-//   arrayPokemonsOfType.forEach((el) => {
-//     const data = fetchPokemon(el);
-//     console.log();
-//     data;
-//   });
-// };
-// export const loadFilteredPokemons = function () {
-//   const data = fetchPokemonsByType();
-//   loadPokemon(data);
-// };
-
-// const typesArray = [
-//   "normal",
-//   "fighting",
-//   "flying",
-//   "poison",
-//   "ground",
-//   "rock",
-//   "bug",
-//   "ghost",
-//   "steel",
-//   "fire",
-//   "water",
-//   "grass",
-//   "electric",
-//   "psychic",
-//   "ice",
-//   "dragon",
-//   "dark",
-//   "fairy",
-// ];

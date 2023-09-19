@@ -3,7 +3,7 @@ export const renderError = function (error) {
   const markup = `
     <div class="error">
         <div class="error-msg">
-          <i class="ph-bold ph-warning"></i>
+        <i class="warning fa-solid fa-triangle-exclamation"></i>
           <p>${error}</p>
         </div>
       <section class="img-container-error">

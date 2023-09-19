@@ -147,7 +147,7 @@ export default class Pokemon {
                </header>
   
 
-               <article>
+             
             <section class="img-container-modal">
             <img class="img-pokemon-modal" src=${this._imgSrc()} onerror =${this._onError()} alt="${
       this.name
@@ -173,7 +173,7 @@ export default class Pokemon {
              <canvas id="${this.id}-bar"></canvas></div>
              </section>
             </div>
-          </article>
+       
         
         </form>
 
@@ -204,8 +204,7 @@ export default class Pokemon {
     dialog.insertAdjacentHTML("afterbegin", markup);
     this._generateChart();
     dialog.showModal();
-    // this._lockScroll();
-    // dialog.addEventListener("close", this._returnScroll);
+
     dialog.addEventListener("click", this._closeOnBackDropClick);
     this._dialogPolyfill();
   }

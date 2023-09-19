@@ -80,7 +80,7 @@ export const createBarChart = async function (data, id, label) {
             "rgba(54, 162, 235)",
             "rgba(245, 120, 245)",
           ],
-          barThickness: 10,
+          barThickness: 11,
           borderRadius: 99,
           borderSkipped: false,
         },
@@ -107,7 +107,7 @@ export const createBarChart = async function (data, id, label) {
         },
         y: {
           ticks: {
-            font: { size: 12, family: "Roboto Mono" },
+            font: { size: 13, family: "Roboto Mono" },
           },
           grid: {
             display: false,

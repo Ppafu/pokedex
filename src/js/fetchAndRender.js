@@ -24,7 +24,7 @@ export const fetchPokemon = async function (value) {
       throw new Error("There is no such pokemon");
     }
   } catch (error) {
-    console.log(`${error}`);
+    console.error(`fetchPokemon: ${error}`);
     renderError(error);
   }
 };
