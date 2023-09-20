@@ -64,9 +64,9 @@ h6 {
   isolation: isolate;
 }
 
-/* *:focus {
+*:focus {
   outline: none;
-} */
+}
 
 /* *************************** */
 html,
@@ -105,11 +105,9 @@ li {
   font-size: var(--font-size-5);
   color: var(--gray-6);
 
-  transition: outline-color 0.3s;
-}
-
-.btn:hover {
-  color: var(--blue-7);
+  aspect-ratio: 1;
+  padding: var(--size-1);
+  transition: color 0.3s;
 }
 
 .btn--up {
@@ -168,6 +166,14 @@ li {
   }
 }
 
+.logo:focus,
+.logo:focus-within {
+  @media (min-width: 1024px) {
+    box-shadow: 0 0 0 0.15rem rgb(27, 118, 227);
+    border-radius: var(--radius-3);
+  }
+}
+
 .logo img {
   width: 30rem;
 }
@@ -190,21 +196,27 @@ body > aside {
   z-index: 2;
   height: 100%;
 
-  width: 0;
-  /* visibility: hidden; */
-  visibility: visible;
-
   background-color: var(--gray-4);
   box-shadow: var(--shadow-4);
 
   overflow: auto;
-  transition: 0.5s;
+  width: 0;
+  transition: width 0.5s;
 
   white-space: nowrap;
 }
 
+.visible {
+  visibility: visible;
+}
+.hidden {
+  visibility: hidden;
+}
+.active {
+}
+
 .btn--close {
-  padding: 0 var(--size-3);
+  margin: 0 var(--size-3);
   align-self: flex-start;
 }
 .wrapper {
@@ -230,13 +242,10 @@ body > aside {
   height: var(--size-8);
   padding: var(--size-1);
 
-  box-shadow: 0 0 0 0.15rem transparent;
   transition: box-shadow 0.3s;
   overflow: hidden;
 }
 
-label {
-}
 .search {
   width: calc(100% - 2rem);
 
@@ -254,7 +263,6 @@ input:focus::placeholder {
   color: transparent;
 }
 .btn-search {
-  /* position: fixed; */
 }
 
 /* Sort */
@@ -269,15 +277,17 @@ input:focus::placeholder {
 .filter-container {
   align-self: center;
   display: grid;
-  padding: var(--size-3);
+
+  padding-block: var(--size-5);
+  padding-inline: var(--size-2);
   grid-template-columns: repeat(2, auto);
-  column-gap: var(--size-3);
-  row-gap: var(--size-2);
+  column-gap: var(--size-4);
+  row-gap: var(--size-3);
 
   justify-content: center;
 
   height: auto;
-  width: 90%;
+  width: 100%;
 
   border-radius: var(--radius-3);
   background-color: rgba(255, 255, 255, 0.5);
@@ -286,7 +296,7 @@ input:focus::placeholder {
 
   @media (min-width: 768px) {
     width: 100%;
-    grid-template-columns: repeat(3, auto);
+    grid-template-columns: repeat(2, auto);
     gap: var(--size-4);
   }
 }
@@ -294,8 +304,6 @@ input:focus::placeholder {
 .type.filter {
   font-size: var(--font-size-2);
   width: 6rem;
-}
-.type.filter:hover {
   cursor: pointer;
 }
 
@@ -358,14 +366,10 @@ body > main {
   transition: all 0.25s;
 }
 
-.pokemon-preview:hover {
-  box-shadow: var(--shadow-4);
-  transform: translateZ(0) scale(1.069);
-}
-
 .id {
   width: 100%;
-  color: var(--gray-6);
+  /* color: var(--gray-6); */
+  color: rgb(84, 88, 93);
   padding: 0.25rem 0 0 0.5rem;
   font-size: 0.85rem;
   @media (min-width: 425px) {
@@ -800,9 +804,10 @@ dialog > form > article {
   height: 100%;
 }
 /*  */
-.hidden {
+.hidden-overflow {
   overflow: hidden;
 }
+/*  */
 
 @media (min-width: 320px) {
 }
@@ -825,4 +830,66 @@ dialog > form > article {
 /* 4k styles - 2560px*/
 @media (min-width: 2500px) {
   /* CSS styles for 4k desktop screens */
+}
+/* box-shadow: 0 0 0 0.15rem var(--blue-7); */
+
+/* Keyboard control */
+@media (min-width: 1024px) {
+  .btn:hover,
+  .btn:active {
+    color: var(--blue-7);
+  }
+  .btn:focus,
+  .btn:focus-within {
+    box-shadow: 0 0 0 0.15rem var(--blue-7);
+    border-radius: var(--radius-3);
+  }
+
+  .btn-search:hover,
+  .btn-search:active {
+    color: var(--blue-7);
+  }
+  .btn-search:focus,
+  .btn-search:focus-within {
+    color: var(--blue-7);
+    border-radius: var(--radius-5);
+  }
+
+  .btn--close-modal:hover,
+  .btn--close-modal:active {
+    /* color: var(--blue-7); */
+  }
+  .btn--close-modal:focus,
+  .btn--close-modal:focus-within {
+    /* box-shadow: 0 0 0 0.15rem var(--blue-7);
+    border-radius: var(--radius-2); */
+  }
+
+  .input-container:hover,
+  .input-container:active {
+    box-shadow: 0 0 0 0.15rem var(--blue-7);
+  }
+  .input-container:focus,
+  .input-container:focus-within {
+    box-shadow: 0 0 0 0.15rem var(--blue-7);
+  }
+
+  .type.filter:hover,
+  .type.filter:active {
+    /* box-shadow: 0 0 0 0.15rem var(--blue-7); */
+  }
+  .type.filter:focus,
+  .type.filter:focus-within {
+    box-shadow: 0 0 0 0.15rem var(--blue-7);
+  }
+
+  .pokemon-preview:hover,
+  .pokemon-preview:active {
+    box-shadow: var(--shadow-4);
+    transform: translateZ(0) scale(1.069);
+  }
+
+  .pokemon-preview:focus-within {
+    box-shadow: 0 0 0 0.15rem var(--blue-7);
+  }
 }

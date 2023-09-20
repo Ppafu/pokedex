@@ -1,8 +1,10 @@
 import { Type } from "./Type";
 import { API_URL } from "./config";
 import { AJAX } from "./helpers";
+import { closeMenu } from "./menu";
 import { renderError } from "./renderError";
 import { pokemonOrder } from "./sort";
+import { throttle } from "./throttle";
 
 // fetch types -> render types -> click type -> got an array of pokemons -> render them
 
@@ -26,8 +28,18 @@ export const appendTypeElements = async function () {
 
     const typeElement = document.querySelector(`li.${element}`);
 
-    typeElement.addEventListener("click", () => {
-      loadFilteredPokemons(type.name);
+    typeElement.addEventListener(
+      "click",
+      throttle(() => {
+        loadFilteredPokemons(type.name);
+      }, 250)
+    );
+
+    typeElement.addEventListener("keydown", function (event) {
+      if (event.key === "Enter") {
+        event.preventDefault();
+        loadFilteredPokemons(type.name);
+      }
     });
   });
 };
@@ -50,6 +62,9 @@ export const loadFilteredPokemons = async function (type) {
     if (type) {
       const arrayOfPokemons = await fetchPokemonsByType(type);
       pokemonOrder(arrayOfPokemons);
+      if (window.innerWidth < "768") {
+        closeMenu();
+      }
     } else {
       return;
     }
@@ -58,4 +73,3 @@ export const loadFilteredPokemons = async function (type) {
     renderError(error);
   }
 };
-

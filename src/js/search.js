@@ -1,6 +1,8 @@
 import { fetchPokemon, renderPokemon } from "./fetchAndRender";
+import { closeMenu } from "./menu";
 import { renderError } from "./renderError";
 import { renderSpinner, deleteSpinner } from "./spinner";
+import { throttle } from "./throttle";
 
 const parentElement = document.querySelector(".pokemon-container");
 const search = document.querySelector(".search");
@@ -33,6 +35,9 @@ const fetchPokemonSearch = async function () {
 const searchPokemon = async function () {
   fetchPokemonSearch();
   parentElement.innerHTML = "";
+  if (window.innerWidth < "768") {
+    closeMenu();
+  }
 };
 
 export const triggerSearch = function () {
@@ -42,5 +47,5 @@ export const triggerSearch = function () {
       searchPokemon();
     }
   });
-  searchBtn.addEventListener("click", searchPokemon);
+  searchBtn.addEventListener("click", throttle(searchPokemon, 250));
 };

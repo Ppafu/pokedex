@@ -75,8 +75,9 @@ export default class Pokemon {
   }
   _createElement(markup, el, className) {
     const element = document.createElement(el);
-    element.className = className;
     element.innerHTML = markup;
+    element.className = className;
+    element.tabIndex = "0";
     return element;
     // element.dataset.id = this.id;
   }
@@ -133,7 +134,7 @@ export default class Pokemon {
     let markup = `
             <form class="dialog-wrapper" method="dialog">
        <header>
-            <section class="info-modal">
+            <section class="info-modal" >
                 <div class="id id-modal"><p>#${this.id}</p></div>
                 <h2 class="name name-modal">${this._nameToUpperCase()}</h2>
                 <div class="type-container">
@@ -141,7 +142,7 @@ export default class Pokemon {
                 </div>
                 </section>
 
-               <button class="btn btn--close-modal">
+               <button class="btn btn--close-modal" aria-label="close modal" >
                <i class="fa-solid fa-xmark"></i>
                </button>
                </header>
@@ -213,7 +214,12 @@ export default class Pokemon {
     const markup = this._generateMarkup();
 
     // Create a new DOM element from the markup and add the pokemon-preview class directly
-    const pokemonElement = this._createElement(markup, "li", "pokemon-preview");
+    const pokemonElement = this._createElement(
+      markup,
+      "li",
+      "pokemon-preview",
+      "0"
+    );
 
     // Append the new element to the parent element
     this._parentElement.appendChild(pokemonElement);
@@ -221,6 +227,13 @@ export default class Pokemon {
     // Add the event listener to the new element
     pokemonElement.addEventListener("click", () => {
       this._renderModal();
+    });
+
+    pokemonElement.addEventListener("keydown", (event) => {
+      if (event.key === "Enter") {
+        event.preventDefault();
+        this._renderModal();
+      }
     });
   }
 }

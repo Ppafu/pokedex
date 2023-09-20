@@ -1,4 +1,6 @@
 import { loadPokemon } from "./loadPokemon";
+import { closeMenu } from "./menu";
+import { throttle } from "./throttle";
 
 const ascendingOrderBtn = document.querySelector(".ascending");
 const descendingOrderBtn = document.querySelector(".descending");
@@ -17,10 +19,23 @@ export const pokemonOrder = function (arrayOfPokemons, order = "ascending") {
 };
 
 // Add event listeners
-ascendingOrderBtn.addEventListener("click", () => {
-  pokemonOrder(sortedArray, "ascending"); // Pass the current sorted array
-});
 
-descendingOrderBtn.addEventListener("click", () => {
-  pokemonOrder(sortedArray, "descending"); // Pass the current sorted array
-});
+ascendingOrderBtn.addEventListener(
+  "click",
+  throttle(() => {
+    pokemonOrder(sortedArray, "ascending"); // Pass the current sorted array
+    if (window.innerWidth < "768") {
+      closeMenu();
+    }
+  }, 250)
+);
+
+descendingOrderBtn.addEventListener(
+  "click",
+  throttle(() => {
+    pokemonOrder(sortedArray, "descending"); // Pass the current sorted array
+    if (window.innerWidth < "768") {
+      closeMenu();
+    }
+  }, 250)
+);

@@ -4,7 +4,7 @@
     <meta charset="UTF-8" />
     <meta
       name="viewport"
-      content="height=device-height, initial-scale=1, user-scalable=no, viewport-fit=cover" />
+      content="height=device-height, initial-scale=1, user-scalable=yes, viewport-fit=cover" />
     <meta name="theme-color" content="#f1f3f5" />
 
     <script type="module" src="src/js/main.js"></script>
@@ -27,8 +27,8 @@
 
   <body>
     <aside>
-      <nav class="menu" id="menu">
-        <button class="btn btn--close">
+      <nav class="menu hidden" id="menu">
+        <button class="btn btn--close" aria-label="close menu">
           <i class="fa-solid fa-xmark"></i>
         </button>
 
@@ -43,7 +43,7 @@
               placeholder="Search"
               maxlength="500" />
 
-            <button class="btn btn--search">
+            <button class="btn btn--search" aria-label="search">
               <i class="fa-solid fa-magnifying-glass"></i>
             </button>
           </div>
@@ -52,10 +52,12 @@
         <div class="wrapper">
           <h4>Sort:</h4>
           <div class="sort-container">
-            <button class="btn btn--sort ascending">
+            <button class="btn btn--sort ascending" aria-label="sort ascending">
               <i class="fa-solid fa-arrow-up-short-wide"></i>
             </button>
-            <button class="btn btn--sort descending">
+            <button
+              class="btn btn--sort descending"
+              aria-label="sort descending">
               <i class="fa-solid fa-arrow-down-wide-short"></i>
             </button>
           </div>
@@ -70,21 +72,21 @@
 
     <!-- MAIN -->
     <main>
-      <button class="btn btn--up">
+      <button class="btn btn--up" aria-label="move up">
         <i class="fa-solid fa-circle-arrow-up"></i>
       </button>
 
       <header class="header">
-        <button class="btn btn--list">
+        <button class="btn btn--list" aria-label="menu">
           <i class="fa-solid fa-bars"></i>
         </button>
-        <div class="logo">
+        <div class="logo" tabindex="0">
           <img src="./src/img/pokedex.svg" alt="pokedex" />
         </div>
       </header>
       <div class="container">
         <!-- MODAL -->
-        <dialog class="dialog" id="pokemon-modal"></dialog>
+        <dialog class="dialog" id="pokemon-modal" role="dialog"></dialog>
 
         <!-- MAIN -->
         <ul class="pokemon-container">
