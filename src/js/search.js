@@ -24,7 +24,9 @@ const fetchPokemonSearch = async function () {
     if (data) {
       renderPokemon(data);
     } else {
-      throw new Error("There is no such pokemon");
+      throw new Error(
+        "There is no such Pokémon. Please check the name or ID and try again."
+      );
     }
   } catch (error) {
     renderError(error);

@@ -17,7 +17,11 @@ export default class Pokemon {
     let markup;
 
     if (this.name.includes("pumpkaboo") || this.name.includes("gourgeist")) {
-      markup = `${url}${this.name.slice(0, -6)}.jpg`;
+      markup = `${url}${this.name.slice(0, 9)}.jpg`;
+      return markup;
+    }
+    if (this.name.includes("eiscue")) {
+      markup = `${url}${this.name}.jpg`;
       return markup;
     }
     if (this.name.includes("regice")) {

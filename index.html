@@ -22,10 +22,24 @@
     <link rel="stylesheet" href="/src/css/style.css" />
     <link rel="stylesheet" href="/src/css/types.css" />
 
+    <link rel="icon" href="/src/img/favicon.png" type="image/x-icon" />
     <title>Pokédex</title>
   </head>
 
   <body>
+    <nav class="hidden-nav" id="nav">
+      <button class="btn btn--home" aria-label="home">
+        <i class="fa-solid fa-house"></i>
+      </button>
+      <button class="btn btn--list" aria-label="menu">
+        <i class="fa-solid fa-bars"></i>
+      </button>
+    </nav>
+
+    <button class="btn btn--up" aria-label="move up">
+      <i class="fa-solid fa-circle-arrow-up"></i>
+    </button>
+
     <aside>
       <nav class="menu hidden" id="menu">
         <button class="btn btn--close" aria-label="close menu">
@@ -33,7 +47,7 @@
         </button>
 
         <!-- Search -->
-        <div class="wrapper">
+        <div class="wrapper search-wrapper">
           <label for="search">Name or Number:</label>
           <div class="input-container">
             <input
@@ -49,7 +63,7 @@
           </div>
         </div>
         <!-- Sort -->
-        <div class="wrapper">
+        <div class="wrapper sort-wrapper">
           <h4>Sort:</h4>
           <div class="sort-container">
             <button class="btn btn--sort ascending" aria-label="sort ascending">
@@ -63,23 +77,35 @@
           </div>
         </div>
         <!-- Types filter -->
-        <div class="wrapper">
+        <div class="wrapper filter-wrapper">
           <h4>Filter:</h4>
+
           <ul class="filter-container"></ul>
+        </div>
+
+        <div class="wrapper contacts-wrapper">
+          <h4>Contacts:</h4>
+          <div class="contacts">
+            <a
+              class="link linkedin btn"
+              href="https://www.linkedin.com/in/inessaevs/"
+              aria-label="linkedin">
+              <i class="fa-brands fa-linkedin"></i>
+            </a>
+            <a
+              class="link github btn"
+              href="https://github.com/Ppafu"
+              aria-label="github">
+              <i class="fa-brands fa-github"></i>
+            </a>
+          </div>
         </div>
       </nav>
     </aside>
 
     <!-- MAIN -->
     <main>
-      <button class="btn btn--up" aria-label="move up">
-        <i class="fa-solid fa-circle-arrow-up"></i>
-      </button>
-
       <header class="header">
-        <button class="btn btn--list" aria-label="menu">
-          <i class="fa-solid fa-bars"></i>
-        </button>
         <div class="logo" tabindex="0">
           <img src="./src/img/pokedex.svg" alt="pokedex" />
         </div>

@@ -3,13 +3,6 @@ import { API_URL } from "./config";
 import { createPokemonObject } from "./createPokemonObject";
 import { renderError } from "./renderError";
 
-const deleteHiddenClass = function () {
-  const hiddenItems = document.querySelectorAll(".pokemon-preview.hidden");
-  hiddenItems.forEach((item) => {
-    item.classList.remove("hidden");
-  });
-};
-
 export const fetchPokemon = async function (value) {
   try {
     const pokemonData = await AJAX(`${API_URL}pokemon/${value}`);
@@ -21,7 +14,9 @@ export const fetchPokemon = async function (value) {
 
       return data;
     } else {
-      throw new Error("There is no such pokemon");
+      throw new Error(
+        "There is no such Pokémon. Please check the name or ID and try again."
+      );
     }
   } catch (error) {
     console.error(`fetchPokemon: ${error}`);

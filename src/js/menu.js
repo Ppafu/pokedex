@@ -5,10 +5,15 @@ const btnClose = document.querySelector(".btn--close");
 const menuEl = document.getElementById("menu");
 const dialog = document.querySelector("dialog");
 const body = document.querySelector("html");
+const navBar = document.getElementById("nav");
 
 const openMenu = function () {
   menuEl.classList.add("visible");
   menuEl.classList.remove("hidden");
+
+  if (window.innerWidth < "1100") {
+    navBar.style.top = "-5rem";
+  }
 
   menuEl.style.width = `${window.innerWidth < "768" ? "100%" : "25rem"}`;
   if (menuEl.style.width == "100%") {
@@ -21,6 +26,10 @@ const openMenu = function () {
 
 export const closeMenu = function () {
   menuEl.style.width = "0";
+
+  if (window.innerWidth < "1100") {
+    navBar.style.top = "0";
+  }
 
   setTimeout(function () {
     btnMenu.focus();

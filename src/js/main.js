@@ -6,7 +6,8 @@ import { NUMBER_OF_POKEMONS } from "./config";
 import { pokemonOrder } from "./sort";
 import { arrayRange } from "./helpers";
 import { scrollUpBtn } from "./scrollUpBtn";
-import { reloadOnLogo } from "./reloadOnLogo";
+import { reloadPage } from "./reloadPage";
+import { hideNav } from "./navBar";
 
 const initialLoad = function () {
   const arrayOfPokemons = arrayRange(1, NUMBER_OF_POKEMONS, 1);
@@ -17,15 +18,14 @@ const initialLoad = function () {
 };
 //////////////////
 
-//////////////////
-
 const init = function () {
   initialLoad();
   menu();
   triggerSearch();
   appendTypeElements();
   scrollUpBtn();
-  reloadOnLogo();
+  reloadPage();
+  hideNav();
 };
 
 init();
