@@ -825,9 +825,7 @@ dialog > form > article {
 }
 .chart-bar canvas {
   height: 7rem;
-  @media (min-width: 425px) {
-    height: 8rem;
-  }
+  
   @media (min-width: 768px) {
     height: 9rem;
   }
