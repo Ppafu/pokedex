@@ -231,17 +231,17 @@ body > aside {
   align-items: center;
   flex-direction: column;
   padding-top: var(--size-3);
-  gap: var(--size-5);
+  gap: var(--size-4);
 
   top: 0;
   right: 0;
   z-index: 2;
-  height: 100%;
+  height: 100vh;
 
   background-color: var(--gray-4);
   box-shadow: var(--shadow-4);
 
-  overflow: hidden;
+  overflow-x: auto;
   width: 0;
   transition: width 0.5s;
 
@@ -346,7 +346,7 @@ input:focus::placeholder {
   padding-inline: var(--size-2);
   grid-template-columns: repeat(2, auto);
   column-gap: var(--size-4);
-  row-gap: var(--size-3);
+  row-gap: 0.75rem;
 
   justify-content: center;
 
@@ -371,7 +371,7 @@ input:focus::placeholder {
 
   cursor: pointer;
 
-  filter: contrast(50%) grayscale(25%);
+  filter: contrast(80%) grayscale(80%);
 }
 
 .type.filter:hover,
@@ -450,7 +450,6 @@ body > main {
 
 .id {
   width: 100%;
-  /* color: var(--gray-6); */
   color: rgb(84, 88, 93);
   padding: 0.25rem 0 0 0.5rem;
   font-size: 0.85rem;
@@ -531,8 +530,9 @@ body > main {
 
 /* MODAL */
 
-#pokemon-modal {
-  display: flex;
+dialog {
+  display: grid;
+
   margin: auto;
 
   border-radius: var(--radius-3);
@@ -544,13 +544,16 @@ body > main {
   box-shadow: var(--shadow-4);
 
   width: min(100% - 2rem, 60rem);
-  @media (min-width: 650px) {
+
+  overflow: auto;
+
+  max-block-size: min(82dvb, 100%);
+  @media (min-width: 640px) {
     width: min(100% - 12rem, 40rem);
   }
   @media (min-width: 1024px) {
-    width: min(100% - 2rem, 60rem);
-
-    height: 35rem;
+    width: min(100% - 2rem, 61rem);
+    height: 37rem;
   }
 }
 
@@ -584,8 +587,9 @@ dialog + .backdrop {
   height: 100%;
   gap: var(--size-2);
 
+  overflow-x: hidden;
   display: flex;
-  padding: 0.5rem;
+  padding: var(--size-2);
   flex-direction: column;
   align-items: center;
   @media (min-width: 768px) {
@@ -743,14 +747,13 @@ dialog > form > article {
 
 .info-wrapper {
   width: 100%;
-  display: flex;
-  flex-direction: column;
-  gap: var(--size-2);
+  display: grid;
+  grid-template-rows: 1fr auto auto;
+  row-gap: var(--size-2);
 
   height: 100%;
-  @media (min-width: 320px) {
-    order: 2;
-  }
+
+  order: 2;
   @media (min-width: 350px) {
     order: 1;
   }
@@ -790,40 +793,47 @@ dialog > form > article {
   }
 }
 .chart-wrapper {
-  height: 100%;
-
   width: 100%;
+  @media (min-width: 375px) {
+    width: 90%;
+  }
   @media (min-width: 425px) {
     width: 80%;
   }
-  @media (min-width: 768px) {
+  @media (min-width: 1024px) {
     width: 70%;
   }
 }
 .chart-radar {
-  height: 100%;
-  @media (min-width: 320px) {
-  }
+  max-height: fit-content;
 }
+
 .chart-radar canvas {
-  @media (min-width: 320px) {
-    height: 10rem;
-  }
+  height: 11rem;
   @media (min-width: 425px) {
-    height: 12rem;
+    min-height: 12rem;
+  }
+  @media (min-width: 768px) {
+    min-height: 14rem;
   }
   @media (min-width: 1024px) {
-    height: 15rem;
+    min-height: 15rem;
   }
 }
 
 .chart-bar {
-  /* height: 100%; */
-  @media (min-width: 320px) {
-  }
+  max-height: fit-content;
 }
 .chart-bar canvas {
-  height: 7rem;
+  min-height: 7rem;
+  @media (min-width: 375px) {
+  }
+  @media (min-width: 425px) {
+    min-height: 8rem;
+  }
+  @media (min-width: 768px) {
+    min-height: 9rem;
+  }
 }
 
 /*  */
@@ -945,3 +955,5 @@ dialog > form > article {
     box-shadow: 0 0 0 0.15rem var(--indigo-3);
   }
 }
+
+/*  */

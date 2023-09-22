@@ -74,7 +74,7 @@ export default class Pokemon {
 
   _onError() {
     let markup;
-    markup = `"this.onerror=null; this.src = './src/img/MissingNo.svg'"`;
+    markup = `"this.onerror=null; this.src = './src/img/MissingNo.png'"`;
     return markup;
   }
   _createElement(markup, el, className) {
@@ -83,7 +83,6 @@ export default class Pokemon {
     element.className = className;
     element.tabIndex = "0";
     return element;
-    // element.dataset.id = this.id;
   }
   _nameToUpperCase() {
     return `${

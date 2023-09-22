@@ -15,8 +15,8 @@ const openMenu = function () {
     navBar.style.top = "-5rem";
   }
 
-  menuEl.style.width = `${window.innerWidth < "768" ? "100%" : "25rem"}`;
-  if (menuEl.style.width == "100%") {
+  menuEl.style.width = `${window.innerWidth < "768" ? "100vw" : "25rem"}`;
+  if (menuEl.style.width == "100vw") {
     body.classList.add("hidden-overflow");
   }
   setTimeout(function () {
