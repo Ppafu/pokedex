@@ -8,7 +8,7 @@ export const hideNav = function () {
   window.onscroll = function () {
     let currentScrollPos = window.scrollY;
 
-    if (prevScrollpos > currentScrollPos || window.scrollY === "0") {
+    if (prevScrollpos > currentScrollPos) {
       document.getElementById("nav").style.top = "0";
     } else {
       document.getElementById("nav").style.top = "-5rem";
