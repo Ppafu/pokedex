@@ -546,7 +546,7 @@ dialog {
 
   overflow: auto;
 
-  height: calc(100svh - 2rem);
+  height: calc(100svh - 1rem);
   @media (min-width: 640px) {
     width: min(100% - 12rem, 40rem);
   }
