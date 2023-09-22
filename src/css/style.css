@@ -810,7 +810,7 @@ dialog > form > article {
 .chart-radar canvas {
   height: 9rem;
   @media (min-width: 425px) {
-    height: 12rem;
+    height: 11rem;
   }
   @media (min-width: 768px) {
     height: 14rem;
