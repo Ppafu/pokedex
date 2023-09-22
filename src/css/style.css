@@ -546,7 +546,7 @@ dialog {
 
   overflow: auto;
 
-  height: 100svh;
+  height: 80svh;
   @media (min-width: 640px) {
     width: min(100% - 12rem, 40rem);
   }
@@ -747,7 +747,7 @@ dialog > form > article {
 .info-wrapper {
   width: 100%;
   display: grid;
-  grid-template-rows: 1fr auto auto;
+  grid-template-rows: repeat(3, auto);
   row-gap: var(--size-2);
 
   height: 100%;
@@ -804,34 +804,32 @@ dialog > form > article {
   }
 }
 .chart-radar {
-  max-height: fit-content;
+  height: 100%;
 }
 
 .chart-radar canvas {
-  height: 11rem;
+  height: 9rem;
   @media (min-width: 425px) {
-    min-height: 12rem;
+    height: 12rem;
   }
   @media (min-width: 768px) {
-    min-height: 14rem;
+    height: 14rem;
   }
   @media (min-width: 1024px) {
-    min-height: 15rem;
+    height: 15rem;
   }
 }
 
 .chart-bar {
-  max-height: fit-content;
+  height: 100%;
 }
 .chart-bar canvas {
-  min-height: 7rem;
-  @media (min-width: 375px) {
-  }
+  height: 7rem;
   @media (min-width: 425px) {
-    min-height: 8rem;
+    height: 8rem;
   }
   @media (min-width: 768px) {
-    min-height: 9rem;
+    height: 9rem;
   }
 }
 
