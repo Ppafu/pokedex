@@ -157,7 +157,8 @@ li {
     width: 100%;
     height: var(--size-9);
     background-color: rgba(241, 243, 245, 0.95);
-    box-shadow: var(--shadow-2);
+
+    box-shadow: rgba(94, 95, 99, 0.1) 0px 2px 8px 0px;
 
     transition: 0.3s;
   }
@@ -238,7 +239,7 @@ body > aside {
   height: 100svh;
 
   background-color: var(--gray-4);
-  box-shadow: var(--shadow-4);
+  box-shadow: rgba(94, 95, 99, 0.3) 0px 2px 8px 0px;
 
   overflow-x: auto;
   width: 0;
@@ -435,7 +436,7 @@ body > main {
   aspect-ratio: 1/1.35;
 
   overflow: hidden;
-  box-shadow: var(--shadow-3);
+  box-shadow: rgba(94, 95, 99, 0.15) 0px 2px 8px 0px;
   cursor: pointer;
 
   transition: all 0.25s;
@@ -443,7 +444,7 @@ body > main {
 
 .pokemon-preview:hover,
 .pokemon-preview:active {
-  box-shadow: var(--shadow-4);
+  box-shadow: rgba(94, 95, 99, 0.3) 0px 2px 8px 0px;
   transform: translateZ(0) scale(1.069);
 }
 
@@ -540,14 +541,21 @@ dialog {
 
   background-color: var(--gray-1);
   padding: 0;
-  box-shadow: var(--shadow-4);
+  box-shadow: rgba(94, 95, 99, 0.3) 0px 2px 8px 0px;
 
   width: min(100% - 2rem, 60rem);
 
   overflow: auto;
 
-  height: 100svh;
+  height: min(100% - 2rem, 37rem);
+  @media (min-width: 375px) {
+    height: min(100% - 2rem, 40rem);
+  }
+  @media (min-width: 425px) {
+    height: min(100% - 3rem, 43rem);
+  }
   @media (min-width: 640px) {
+    height: min(100% - 3rem, 50rem);
     width: min(100% - 12rem, 40rem);
   }
   @media (min-width: 1024px) {
@@ -804,16 +812,17 @@ dialog > form > article {
   }
 }
 .chart-radar {
-  height: 100%;
+  height: min-content;
 }
 
 .chart-radar canvas {
-  height: 9rem;
+  height: 10rem;
   @media (min-width: 425px) {
     height: 11rem;
   }
+
   @media (min-width: 768px) {
-    height: 14rem;
+    height: 13rem;
   }
   @media (min-width: 1024px) {
     height: 15rem;
@@ -821,11 +830,11 @@ dialog > form > article {
 }
 
 .chart-bar {
-  height: 100%;
+  height: min-content;
 }
 .chart-bar canvas {
   height: 7rem;
-  
+
   @media (min-width: 768px) {
     height: 9rem;
   }
