@@ -7,7 +7,7 @@ export const renderError = function (error) {
           <p>${error}</p>
         </div>
       <section class="img-container-error">
-      <img class="img-error" src="public/error.png" alt="pikachu with stop sign">
+      <img class="img-error" src="/error.png" alt="pikachu with stop sign">
     </div>
     `;
   parentElement.innerHTML = "";

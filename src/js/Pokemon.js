@@ -75,7 +75,7 @@ export default class Pokemon {
 
   _onError() {
     let markup;
-    markup = `"this.onerror=null; this.src = 'public/missingNo.png'"`;
+    markup = `"this.onerror=null; this.src = '/missingNo.png'"`;
     return markup;
   }
   _createElement(markup, el, className) {
