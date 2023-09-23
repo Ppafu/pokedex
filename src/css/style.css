@@ -825,7 +825,7 @@ dialog > form > article {
     height: 13rem;
   }
   @media (min-width: 1024px) {
-    height: 15rem;
+    height: 14rem;
   }
 }
 
