@@ -236,7 +236,7 @@ body > aside {
   top: 0;
   right: 0;
   z-index: 2;
-  height: 100svh;
+  height: 100dvh;
 
   background-color: var(--gray-4);
   box-shadow: rgba(94, 95, 99, 0.3) 0px 2px 8px 0px;
@@ -607,6 +607,8 @@ dialog + .backdrop {
     display: grid;
     grid-template-rows: auto 1fr;
     grid-template-columns: repeat(2, 1fr);
+
+    overflow: hidden;
   }
 }
 /*  */
