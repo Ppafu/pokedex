@@ -1,6 +1,7 @@
 # Pokémon Pokedex Project
 <p align="center">
-<img src="https://github.com/Ppafu/pokedex/assets/123316913/65d12a9e-4039-4b26-86a6-cabde9a452ff.png" width = "550px"></p>
+<img src="https://raw.githubusercontent.com/Ppafu/pokedex/main/src/img/pokedex.png" width = "550px">
+</p>
 
 ## Demo
 You can try out the live demo of the Pokedex [**here**](https://pokedex-ppafu.netlify.app).
