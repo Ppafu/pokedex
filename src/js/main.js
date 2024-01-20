@@ -11,11 +11,12 @@ import { hideNav } from "./navBar";
 
 const initialLoad = function () {
   const arrayOfPokemons = arrayRange(1, NUMBER_OF_POKEMONS, 1);
-  const arrayOfExtraPokemons = arrayRange(10001, 10271, 1); //API special forms of pokemons
+  const arrayOfExtraPokemons = arrayRange(10001, 10277, 1); //API special forms of pokemons
 
   const arrayOfAllPokemons = arrayOfPokemons.concat(arrayOfExtraPokemons);
   pokemonOrder(arrayOfAllPokemons);
 };
+
 //////////////////
 
 const init = function () {
